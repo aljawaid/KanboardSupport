@@ -10,7 +10,7 @@ class Plugin extends Base
     public function initialize()
     {
         // Template - Override name should be camelCase e.g. pluginNameExampleCamelCase
-        $this->template->setTemplateOverride('action/index', 'pluginNameExampleCamelCase:action/index');
+        $this->template->setTemplateOverride('config/about', 'kanboardSupport:config/about');
 
         // CSS - Asset Hook - keep filename lowercase
         $this->hook->on('template:layout:css', array('template' => 'plugins/PluginNameExampleStudlyCaps/Assets/css/plugin-name.css'));
