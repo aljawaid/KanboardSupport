@@ -1,6 +1,6 @@
 <?php
 
-namespace Kanboard\Plugin\PluginNameExampleStudlyCaps;
+namespace Kanboard\Plugin\KanboardSupport;
 
 use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
@@ -13,7 +13,7 @@ class Plugin extends Base
         $this->template->setTemplateOverride('config/about', 'kanboardSupport:config/about');
 
         // CSS - Asset Hook - keep filename lowercase
-        $this->hook->on('template:layout:css', array('template' => 'plugins/PluginNameExampleStudlyCaps/Assets/css/plugin-name.css'));
+        $this->hook->on('template:layout:css', array('template' => 'plugins/KanboardSupport/Assets/css/kanboard-support.css'));
 
         // SETTINGS SIDEBAR - Template Hook - Override name should start lowercase e.g. pluginNameExampleCamelCase
         $this->template->hook->attach('template:config:sidebar', 'kanboardSupport:config/sidebar');
@@ -29,12 +29,12 @@ class Plugin extends Base
 
     public function getPluginName()
     {
-        return 'Plugin Name';
+        return 'Kanboard Support';
     }
 
     public function getPluginDescription()
     {
-        return t('description text');
+        return t('Add a support section in the Kanboard Settings interface so that end users can easily gather any information required by their internal technical support departments for troubleshooting.');
     }
 
     public function getPluginAuthor()
@@ -53,11 +53,11 @@ class Plugin extends Base
         // >=1.0.37
         // <1.0.37
         // <=1.0.37
-        return '1.0.37';
+        return '>=1.2.20';
     }
 
     public function getPluginHomepage()
     {
-        return 'https://github.com/aljawaid/url';
+        return 'https://github.com/aljawaid/KanboardSupport';
     }
 }
