@@ -15,11 +15,11 @@ class Plugin extends Base
         // CSS - Asset Hook - keep filename lowercase
         $this->hook->on('template:layout:css', array('template' => 'plugins/PluginNameExampleStudlyCaps/Assets/css/plugin-name.css'));
 
-        // JS - Asset Hook - keep filename lowercase
-        $this->hook->on('template:layout:js', array('template' => 'plugins/PluginNameExampleStudlyCaps/Assets/js/plugin-name.js'));
+        // SETTINGS SIDEBAR - Template Hook - Override name should start lowercase e.g. pluginNameExampleCamelCase
+        $this->template->hook->attach('template:config:sidebar', 'kanboardSupport:config/sidebar');
 
-        // Board Views - Template Hook - Override name should start lowercase e.g. pluginNameExampleCamelCase
-        $this->template->hook->attach('template:project-header:view-switcher-before-project-overview', 'pluginNameExampleCamelCase:project_header/actions');
+        // SUPPORT PAGE - Routes
+        $this->route->addRoute('/settings/support', 'TechnicalSupportController', 'show', 'KanboardSupport');
     }
 
     public function onStartup()
