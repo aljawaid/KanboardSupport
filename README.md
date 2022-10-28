@@ -2,7 +2,7 @@
 
 #### _Plugin for [Kanboard](https://github.com/fguillot/kanboard "Kanboard - Kanban Project Management Software")_
 
-Add a support section in the Kanboard Settings interface so that end users can easily gather any information required by their internal technical support departments. 
+Add a support section in the Kanboard Settings interface so that end users can easily gather any information required by their internal technical support departments and for troubleshooting purposes. 
 
 
 Features
@@ -65,7 +65,7 @@ Installation
 _Note: Plugin folder is case-sensitive._
 
 **_or_**
-- git clone (_or ftp upload_) and extract the `.zip` into this folder: `.\plugins\` (must be exact case)
+- `git clone` (_or ftp upload_) and extract the `.zip` into this folder: `.\plugins\` (must be exact case)
 
 
 Translations
