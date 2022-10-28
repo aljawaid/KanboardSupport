@@ -14,6 +14,10 @@
     --border-radius: 3px;
     --button-blue-gradient: linear-gradient(to bottom, #7892c2 80%, #476e9e 100%);
     --blue-border-gradient-match: #476E9E;
+    --tech-bg-grey: #7E8181;
+    --tech-bg-text-color-xwhite: #F0F0F0;
+    --tech-bg-grey-border-match: #6C6E6E;
+    --tech-bg-grey-border-bottom: #555555;
 }
 
 .display-none, .d-none {
@@ -42,7 +46,7 @@
 }
 
 .support-section {
-    margin: 5px 15px 10px 15px;
+    margin: 20px 15px 15px 15px;
 }
 
 .w-50 {
@@ -53,20 +57,109 @@ table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > th {
     padding: 4px 15px;
 }
 
-#UserTable {}
+#UserTable > thead > tr > th:first-child {
+    border-top-left-radius: var(--border-radius);
+}
 
-.cell-title {}
+#UserTable > thead > tr > th:last-child {
+    border-top-right-radius: var(--border-radius);
+}
 
-.cell-value {}
+#UserTable > tbody > tr:last-child > td:first-child {
+    border-bottom-left-radius: var(--border-radius);
+}
 
-.value {}
+#UserTable > tbody > tr:last-child > td:last-child {
+    border-bottom-right-radius: var(--border-radius);
+}
 
-.value-ip {}
+#UserTable > thead > tr > th {
+    border: 1px solid var(--tech-bg-grey-border-match);
+    border-bottom: 5px inset var(--tech-bg-grey-border-bottom);
+}
 
-.value-url {}
+#UserTable > tbody > tr > td {
+    border: 1px solid var(--tech-bg-grey-border-match);
+    border-bottom: 0;
+    border-right: 0;
+}
+
+#UserTable > tbody > tr > td:last-child {
+    border-right: 1px solid var(--tech-bg-grey-border-match);
+}
+
+#UserTable > tbody > .support-table-row:last-child > td {
+    border-bottom: 1px solid var(--tech-bg-grey-border-match);
+}
+
+.cell-title {
+    text-transform: uppercase;
+    font-size: .9em;
+    font-weight: 600;
+}
+
+.cell-value {
+    border-left: 0 !important;
+    padding-bottom: 5px;
+    padding-top: 2px;
+}
+
+.value {
+    white-space: pre;
+    font-family: monospace;
+    font-size: 1.2em;
+    padding-top: 5px;
+}
+
+.value-name {
+    min-width: 300px;
+}
+
+.value-ip {
+    white-space: pre;
+    font-family: monospace;
+    font-size: 1.2em;
+    padding-top: 5px;
+}
+
+.value-url {
+    white-space: pre;
+    font-family: monospace;
+    font-size: 1.2em;
+    padding-top: 5px;
+}
+
+.no-border-left {
+    border-left: 0 !important;
+}
 
 .support-table {}
 
 .support-table-title {
-    font-weight: bold;
+    font-size: 1.1em;
+    padding-top: .3em;
+    padding-bottom: .2em;
+    color: var(--tech-bg-text-color-xwhite);
+    background-color: var(--tech-bg-grey);
+    font-weight: 600;
 }
+
+/* TABLE ROW NUMBERS */
+table.support-table {
+    counter-reset: rowNumber;
+}
+
+table.support-table tr > td:first-child {
+    counter-increment: rowNumber;
+}
+
+table.support-table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+    border-right: 2px solid var(--tech-bg-grey-border-match);
+    padding-right: 15px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+/* END OF TABLE ROW NUMBERS */
