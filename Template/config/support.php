@@ -8,13 +8,13 @@
 
 <!-- USER CONFIGURATION -->
     <section class="support-section">
-        
+        <h2><?= t('User Configuration') ?></h2>
         <div class="table-responsive">
-            <table id="UserTable" class="support-table table-center">
+            <table id="UserTable" class="support-table user-table table-center">
                 <thead class="">
                     <tr class="support-table-row">
-                        <th class="support-table-title" colspan="4" scope="col">
-                            <i class="fa fa-user"></i> <?= t('User Configuration') ?>
+                        <th class="support-table-title border-bottom-thick" colspan="4" scope="col">
+                            <i class="fa fa-user i-fw"></i> <?= t('User Configuration') ?>
                         </th>
                     </tr>
                 </thead>
@@ -52,6 +52,28 @@
         </div>
     </section>
 
+<!-- APPLICATION INFORMATION -->
+    <section class="support-section">
+        <h2 class=""><?= t('Application Information') ?></h2>
+        <div class="app-info">
+            <ul class="">
+                <li class="app-info-title"><?= t('Application Name') ?></li>
+                <li class="app-info-value border-bottom-thick"><?= t('Kanboard') ?></li>
+                <li class="empty-col"></li>
+                <li class="app-info-title"><?= t('Version') ?></li>
+                <li class="app-info-value border-bottom-thick"><?= APP_VERSION ?></li>
+                <li class="empty-col"></li>
+                <li class="app-info-title"><?= t('Updates') ?></li>
+                <?php if ($this->user->isAdmin()): ?>
+                <li class="app-info-value border-bottom-thick">
+                    <a href="https://github.com/kanboard/kanboard/releases" target="_blank" rel="noopener noreferrer" title="<?= t('Opens in a new window') ?>">
+                        <i class="fa fa-external-link"></i> <?= t('Check for updates') ?>
+                    </a>
+                </li>
+            <?php endif ?>
+            </ul>
+        </div>
+    </section>
 
 <?php if (DB_DRIVER === 'sqlite'): ?>
     <div class="page-header">

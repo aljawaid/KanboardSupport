@@ -8,11 +8,11 @@ Add a support section in the Kanboard Settings interface so that end users can e
 Features
 -------------
 
-- User Configuration table
-- Application Configuration table
-- Database Configuration table
-- Server Configuration table
-- Server Software Configuration table
+- User Configuration
+ - Displays basic settings about the logged in user which may be useful to support professionals
+- Application Information
+ - Displays Kanboard name, version and (if admin user) direct link to GitHub releases for Kanboard
+
 
 
 Screenshots
@@ -21,6 +21,10 @@ Screenshots
 **User Configuration**  
 
 ![User Configuration](../master/screenshot-user.png "User Configuration")
+
+**Application Information**
+
+![Application Information](../master/screenshot-app.png "Application Information")
 
 Usage
 -------------
