@@ -1,4 +1,4 @@
-/* KANBOARD PLUGIN - CSS FILE */
+/* KANBOARD PLUGIN - KANBOARD SUPPORT CSS FILE */
 
 :root {
     --pp-blue: #007AC9;
@@ -18,4 +18,55 @@
 
 .display-none, .d-none {
     display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+.table-center {
+    margin: auto;
+    width: fit-content;
+}
+
+.support-section {
+    margin: 5px 15px 10px 15px;
+}
+
+.w-50 {
+    width: 50px;
+}
+
+table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > th {
+    padding: 4px 15px;
+}
+
+#UserTable {}
+
+.cell-title {}
+
+.cell-value {}
+
+.value {}
+
+.value-ip {}
+
+.value-url {}
+
+.support-table {}
+
+.support-table-title {
+    font-weight: bold;
 }
