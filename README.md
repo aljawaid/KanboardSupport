@@ -1,28 +1,31 @@
-# `plugin name`
+# Kanboard Technical Support
 
 #### _Plugin for [Kanboard](https://github.com/fguillot/kanboard "Kanboard - Kanban Project Management Software")_
 
-`Brief intro`
+Add a support section in the Kanboard Settings interface so that end users can easily gather any information required by their internal technical support departments. 
 
 
 Features
 -------------
 
-- main features list 
-- main features list
+- User Configuration table
+- Application Configuration table
+- Database Configuration table
+- Server Configuration table
+- Server Software Configuration table
 
 
 Screenshots
 ----------
 
-**title**  
+**User Configuration**  
 
-![Screenshot Name](../master/screenshot-name.png "Read Screenshot Name")
+![User Configuration](../master/screenshot-user.png "User Configuration")
 
 Usage
 -------------
 
-`Usage instructions`
+Go to `Settings` &#10562; `Technical Support` 
 
 Compatibility
 -------------
