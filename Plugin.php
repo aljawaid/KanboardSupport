@@ -20,6 +20,9 @@ class Plugin extends Base
 
         // SUPPORT PAGE - Routes
         $this->route->addRoute('/settings/support', 'TechnicalSupportController', 'show', 'KanboardSupport');
+
+        // HELPER
+        $this->helper->register('supportHelper', '\Kanboard\Plugin\KanboardSupport\Helper\SupportHelper');
     }
 
     public function onStartup()
