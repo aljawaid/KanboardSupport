@@ -8,10 +8,10 @@ Add a support section in the Kanboard Settings interface so that end users can e
 Features
 -------------
 
-- User Configuration
- - Displays basic settings about the logged in user which may be useful to support professionals
-- Application Information
- - Displays Kanboard name, version and (if admin user) direct link to GitHub releases for Kanboard
+- **User Configuration**
+  - Displays basic settings about the logged in user (including user ID, IP address and browser details) which may be useful to support professionals
+- **Application Information**
+  - Displays Kanboard name, version and (if admin user) direct link to GitHub releases for Kanboard
 
 
 
