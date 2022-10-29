@@ -17,7 +17,9 @@ Features
   - Display basic database information (without password) from the config file
   - Moved SQLite database (upload/download) options from About page
 - **Email Connection**
-  - _Coming soon_
+  - Show SMTP details if set
+  - Show Sendmail details if set
+  - Show if mail settings are configured or not
 - **PHP Information**
   - Display general PHP settings based on the Kanboard installation requirements
   - Check if both required and optional PHP extensions are installed
@@ -41,6 +43,10 @@ Screenshots
 **Database Connection Section**
 
 ![Database Connection](../master/screenshot-db.png "Database Connection")
+
+**Email Connection Section**
+
+![Email Connection](../master/screenshot-mail.png "Email Connection")
 
 **PHP Information Section**
 
