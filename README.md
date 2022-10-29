@@ -16,11 +16,15 @@ Features
 - **Database Connection**
   - Display basic database information (without password) from the config file
   - Moved SQLite database (upload/download) options from About page
+- **Email Connection**
+  - _Coming soon_
 - **PHP Information**
   - Display general PHP settings based on the Kanboard installation requirements
   - Check if both required and optional PHP extensions are installed
   - Check PHP minimum requirement
   - Display useful file paths for configuration files
+- **Server Configuration**
+  - _Coming soon_
 
 
 Screenshots

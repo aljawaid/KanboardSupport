@@ -188,7 +188,7 @@ table.support-table.user-table tr td:first-child::before {
     width: 100px;
 }
 
-.app-info ul li, .php-info ul li, .db-info ul li {
+.app-info ul li, .php-info ul li, .db-info ul li, .mail-info ul li {
     margin: .2em .4em;
     list-style-type: none;
     display: inline-block;
