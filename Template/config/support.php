@@ -108,32 +108,42 @@
         <h2 class=""><i class="fa fa-database"></i> <?= t('Database Connection') ?></h2>
         <div class="db-info">
             <ul class="">
-                <li class="db-info-title"><?= t('Database Driver') ?></li>
-                <li class="db-info-value value-path border-bottom-thick"><?= DB_DRIVER ?></li>
-                <li class="db-info-title"><?= t('Database Version') ?></li>
-                <li class="db-info-value value-version border-bottom-thick"><?= $this->text->e($db_version) ?></li>
-                <li class="db-info-title"><?= t('Database Username') ?></li>
-                <li class="db-info-value value-path border-bottom-thick"><?= DB_USERNAME ?></li>
-                <li class="db-info-title"><?= t('Database Hostname') ?></li>
-                <li class="db-info-value value-path border-bottom-thick"><?= DB_HOSTNAME ?></li>
-                <li class="db-info-title"><?= t('Database Name') ?></li>
-                <li class="db-info-value value-path border-bottom-thick"><?= DB_NAME ?></li>
+                <span class="data-wrap">
+                    <li class="db-info-title"><?= t('Database Driver') ?></li>
+                    <li class="db-info-value value-path border-bottom-thick"><?= DB_DRIVER ?></li>
+                </span>
+                <span class="data-wrap">
+                    <li class="db-info-title"><?= t('Database Version') ?></li>
+                    <li class="db-info-value value-version border-bottom-thick"><?= $this->text->e($db_version) ?></li>
+                </span>
+                <span class="data-wrap">
+                    <li class="db-info-title"><?= t('Database Username') ?></li>
+                    <li class="db-info-value value-path border-bottom-thick"><?= DB_USERNAME ?></li>
+                </span>
+                <span class="data-wrap">
+                    <li class="db-info-title"><?= t('Database Hostname') ?></li>
+                    <li class="db-info-value value-path border-bottom-thick"><?= DB_HOSTNAME ?></li>
+                </span>
+                <span class="data-wrap">
+                    <li class="db-info-title"><?= t('Database Name') ?></li>
+                    <li class="db-info-value value-path border-bottom-thick"><?= DB_NAME ?></li>
+                </span>
             </ul>
             <?php if (DB_DRIVER === 'sqlite'): ?>
                 <div class="panel">
                     <ul>
-                        <li>
+                        <li class="">
                             <?= t('Database Size') ?>
                             <strong><?= $this->text->bytes($db_size) ?></strong>
                         </li>
-                        <li>
+                        <li class="">
                             <?= $this->url->link(t('Download Database'), 'ConfigController', 'downloadDb', array(), true, 'btn btn-sm') ?>&nbsp;
                             <?= t('(Gzip compressed SQLite file)') ?>
                         </li>
-                        <li>
+                        <li class="">
                             <?= $this->url->link(t('Upload Database'), 'ConfigController', 'uploadDb', array(), false, 'js-modal-medium btn btn-sm') ?>
                         </li>
-                        <li>
+                        <li class="">
                             <?= $this->url->link(t('Optimize Database'), 'ConfigController', 'optimizeDb', array(), true, 'btn btn-sm') ?>&nbsp;
                             <?= t('(VACUUM command)') ?>
                         </li>
