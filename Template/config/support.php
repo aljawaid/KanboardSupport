@@ -270,33 +270,43 @@
         <h2 class=""><i class="fa fa-code"></i> <?= t('PHP Information') ?></h2>
         <div class="php-info">
             <ul class="">
-                <li class="app-info-title"><?= t('Version') ?></li>
-                <li class="app-info-value value-version border-bottom-thick">
-                    <strong><abbr title="Major Version"><?= PHP_MAJOR_VERSION ?></abbr></strong>.<abbr title="Minor Version"><?= PHP_MINOR_VERSION ?></abbr>.<abbr title="Release Version"><?= PHP_RELEASE_VERSION ?></abbr>
-                </li>
-                <?php if (version_compare(PHP_VERSION, '7.2.0', '<')): ?>
-                    <span class="fail">
-                        <span class="fail-x">&#10008;</span> <?= t('Less than minimum requirement') ?>
-                    </span>
-                <?php else: ?>
-                    <span class="pass">
-                        <span class="pass-tick">&#10004;</span> <?= t('Pass') ?>
-                    </span>
-                <?php endif ?>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('Version') ?></li>
+                    <li class="app-info-value value-version border-bottom-thick">
+                        <strong><abbr title="Major Version"><?= PHP_MAJOR_VERSION ?></abbr></strong>.<abbr title="Minor Version"><?= PHP_MINOR_VERSION ?></abbr>.<abbr title="Release Version"><?= PHP_RELEASE_VERSION ?></abbr>
+                    </li>
+                    <?php if (version_compare(PHP_VERSION, '7.2.0', '<')): ?>
+                        <span class="fail">
+                            <span class="fail-x">&#10008;</span> <?= t('Less than minimum requirement') ?>
+                        </span>
+                    <?php else: ?>
+                        <span class="pass">
+                            <span class="pass-tick">&#10004;</span> <?= t('Pass') ?>
+                        </span>
+                    <?php endif ?>
+                </span>
                 <li class="empty-col"></li>
-                <li class="app-info-title"><?= t('PHP Config File Path') ?></li>
-                <li class="app-info-value value-path border-bottom-thick"><?= PHP_CONFIG_FILE_PATH ?></li>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('PHP Config File Path') ?></li>
+                    <li class="app-info-value value-path border-bottom-thick"><?= PHP_CONFIG_FILE_PATH ?></li>
+                </span>
                 <li class="empty-col"></li>
-                <li class="app-info-title"><?= t('PHP Config File Scan Directory') ?></li>
-                <li class="app-info-value value-path border-bottom-thick"><?= PHP_CONFIG_FILE_SCAN_DIR ?></li>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('PHP Config File Scan Directory') ?></li>
+                    <li class="app-info-value value-path border-bottom-thick"><?= PHP_CONFIG_FILE_SCAN_DIR ?></li>
+                </span>
                 <li class="empty-col"></li>
-                <li class="app-info-title"><?= t('PHP Loaded Configuration File') ?></li>
-                <li class="app-info-value value-path border-bottom-thick"><?= php_ini_loaded_file() ?></li>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('PHP Loaded Configuration File') ?></li>
+                    <li class="app-info-value value-path border-bottom-thick"><?= php_ini_loaded_file() ?></li>
+                </span>
                 <li class="empty-col"></li>
-                <li class="app-info-title">
-                    <abbr title="<?= t('PHP Server API') ?>"><?= t('PHP SAPI') ?></abbr>
-                </li>
-                <li class="app-info-value value border-bottom-thick"><?= PHP_SAPI ?></li>
+                <span class="data-wrap">
+                    <li class="app-info-title">
+                        <abbr title="<?= t('PHP Server API') ?>"><?= t('PHP SAPI') ?></abbr>
+                    </li>
+                    <li class="app-info-value value border-bottom-thick"><?= PHP_SAPI ?></li>
+                </span>
             </ul>
         </div>
         <!-- gd -->
