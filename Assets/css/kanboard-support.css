@@ -109,7 +109,6 @@ table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > th {
 }
 
 .value {
-    white-space: pre;
     font-family: monospace;
     font-size: 1.2em;
     padding-top: 5px;
@@ -180,7 +179,6 @@ table.support-table.user-table tr td:first-child::before {
 /* END OF TABLE ROW NUMBERS */
 
 .app-info, .php-info, .db-info, .mail-info, .server-info {
-    margin-top: 1.5em;
     margin-bottom: 2em;
 }
 
@@ -189,13 +187,11 @@ table.support-table.user-table tr td:first-child::before {
 }
 
 .app-info ul li, .php-info ul li, .db-info ul li, .mail-info ul li {
-    margin: .2em .4em;
     list-style-type: none;
     display: inline-block;
-    margin-bottom: .6em;
 }
 
-.app-info-value, .db-info-value {
+.app-info-value, .db-info-value, .mail-info-value {
     padding: 0 5px;
 }
 
@@ -301,4 +297,11 @@ table.support-table.user-table tr td:first-child::before {
     font-size: .8em;
     text-transform: uppercase;
     font-style: italic;
+}
+
+.data-wrap {
+    display: inline-block;
+    margin-right: 25px;
+    margin-left: 10px;
+    margin-top: 20px;
 }

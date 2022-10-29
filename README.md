@@ -17,6 +17,8 @@ Features
   - Display basic database information (without password) from the config file
   - Moved SQLite database (upload/download) options from About page
 - **Email Connection**
+  - Show basic mail server settings
+  - BCC field value only displayed for Admins
   - Show SMTP details if set
   - Show Sendmail details if set
   - Show if mail settings are configured or not

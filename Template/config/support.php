@@ -142,6 +142,106 @@
             <?php endif ?>
         </div>
     </section>
+
+<!-- EMAIL CONNECTION -->
+    <section class="support-section">
+        <h2 class=""><i class="fa fa-envelope"></i> <?= t('Email Connection') ?></h2>
+        <div class="mail-info">
+            <ul class="">
+                <span class="data-wrap">
+                    <li class="mail-info-title"><?= t('Mail Configuration') ?></li>
+                    <li class="mail-info-value border-bottom-thick">
+                        <?php if (MAIL_CONFIGURATION == '1'): ?>
+                            <?= t('Enabled') ?>
+                        <?php else: ?>
+                            <?= t('Disabled') ?>
+                        <?php endif ?>
+                    </li>
+                </span>
+                <span class="data-wrap">
+                    <li class="mail-info-title"><?= t('Sender Email') ?></li>
+                    <li class="mail-info-value border-bottom-thick"><?= MAIL_FROM ?></li>
+                </span>
+                <?php if ($this->user->isAdmin()): ?>
+                    <span class="data-wrap">
+                        <li class="mail-info-title"><?= t('BCC') ?></li>
+                        <li class="mail-info-value border-bottom-thick">
+                        <?php if (empty(MAIL_BCC)): ?>
+                            <i><?= t('Not Set') ?></i>
+                        <?php else: ?>
+                            <?= MAIL_BCC ?>
+                        <?php endif ?>
+                        </li>
+                    </span>
+                <?php endif ?>
+                <span class="data-wrap">
+                    <li class="mail-info-title"><abbr title="<?= t('Mail Transport Agent') ?>"><?= t('Mail Transport') ?></abbr></li>
+                    <li class="mail-info-value border-bottom-thick">
+                    <?php if (MAIL_TRANSPORT == 'smtp'): ?>
+                        <?= t('SMTP') ?>
+                    <?php elseif (MAIL_TRANSPORT == 'sendmail'): ?>
+                        <?= t('Sendmail') ?>
+                    <?php elseif (MAIL_TRANSPORT == 'mail'): ?>
+                        <?= t('PHP Mail') ?>
+                    <?php elseif (MAIL_TRANSPORT == 'postmark'): ?>
+                        <?= t('Postmark') ?>
+                    <?php elseif (MAIL_TRANSPORT == 'Mailgun'): ?>
+                        <?= t('Mailgun') ?>
+                    <?php elseif (MAIL_TRANSPORT == 'sendgrid'): ?>
+                        <?= t('SendGrid') ?>
+                    <?php else: ?>
+                        <?= t('Other') ?>
+                    <?php endif ?>
+                    </li>
+                </span>
+                <?php if (MAIL_TRANSPORT == 'smtp'): ?>
+                    <span class="data-wrap">
+                        <li class="mail-info-title"><?= t('Mail Server Hostname') ?></li>
+                        <li class="mail-info-value value-path border-bottom-thick"><?= MAIL_SMTP_HOSTNAME ?></li>
+                    </span>
+                    <?php if (!empty(MAIL_SMTP_ENCRYPTION)): ?>
+                        <span class="data-wrap">
+                            <li class="mail-info-title"><?= t('SMTP Encryption') ?></li>
+                            <li class="mail-info-value border-bottom-thick">
+                            <?php if (MAIL_SMTP_ENCRYPTION == 'ssl'): ?>
+                                <?= t('SSL') ?>
+                            <?php elseif (MAIL_SMTP_ENCRYPTION == 'tls'): ?>
+                                <?= t('TLS') ?>
+                            <?php else: ?>
+                                <?= t('Not Set') ?>
+                            <?php endif ?>
+                            </li>
+                        </span>
+                    <?php endif ?>
+                    <span class="data-wrap">
+                        <li class="mail-info-title"><?= t('SMTP Port') ?></li>
+                        <li class="mail-info-value value-path border-bottom-thick"><?= MAIL_SMTP_PORT ?></li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="mail-info-title"><?= t('SMTP Username') ?></li>
+                        <li class="mail-info-value border-bottom-thick"><?= MAIL_SMTP_USERNAME ?></li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="mail-info-title"><?= t('SMTP HELO Command Name') ?></li>
+                        <li class="mail-info-value border-bottom-thick">
+                        <?php if (!empty(MAIL_SMTP_HELO_NAME)): ?>
+                            <?= MAIL_SMTP_HELO_NAME ?>
+                        <?php else: ?>
+                            <i><?= t('Not Set') ?></i>
+                        <?php endif ?>
+                        </li>
+                    </span>
+                <?php endif ?>
+                <?php if (MAIL_TRANSPORT == 'sendmail'): ?>
+                    <span class="data-wrap">
+                    <li class="mail-info-title"><?= t('Sendmail Command') ?></li>
+                    <li class="mail-info-value value-path border-bottom-thick"><?= MAIL_SENDMAIL_COMMAND ?></li>
+                    </span>
+                <?php endif ?>
+            </ul>
+        </div>
+    </section>
+
 <!-- PHP INFORMATION -->
     <section class="support-section">
         <h2 class=""><i class="fa fa-code"></i> <?= t('PHP Information') ?></h2>
