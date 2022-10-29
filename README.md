@@ -12,6 +12,7 @@ Features
   - Displays basic settings about the logged in user (including user ID, IP address and browser details) which may be useful to support professionals
 - **Application Information**
   - Displays Kanboard name, version and (if admin user) direct link to GitHub releases for Kanboard
+  - Displays useful directory locations and session information
 - **PHP Information**
   - Display general PHP settings based on the Kanboard installation requirements
   - Check if both required and optional PHP extensions are installed
