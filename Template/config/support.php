@@ -57,48 +57,61 @@
         <h2 class=""><i class="fa fa-cog"></i> <?= t('Application Information') ?></h2>
         <div class="app-info">
             <ul class="">
-                <li class="app-info-title"><?= t('Application Name') ?></li>
-                <li class="app-info-value border-bottom-thick"><?= t('Kanboard') ?></li>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('Application Name') ?></li>
+                    <li class="app-info-value border-bottom-thick"><?= t('Kanboard') ?></li>
+                </span>
                 <li class="empty-col"></li>
-                <li class="app-info-title"><?= t('Version') ?></li>
-                <li class="app-info-value value-version border-bottom-thick"><?= APP_VERSION ?></li>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('Version') ?></li>
+                    <li class="app-info-value value-version border-bottom-thick"><?= APP_VERSION ?></li>
+                </span>
                 <li class="empty-col"></li>
                 <?php if ($this->user->isAdmin()): ?>
-                <li class="app-info-title"><?= t('Updates') ?></li>
-                <li class="app-info-value border-bottom-thick">
-                    <a href="https://github.com/kanboard/kanboard/releases" target="_blank" rel="noopener noreferrer" title="<?= t('Opens in a new window') ?>">
-                        <i class="fa fa-external-link"></i> <?= t('Check for updates') ?>
-                    </a>
-                </li>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('Updates') ?></li>
+                    <li class="app-info-value border-bottom-thick">
+                        <a href="https://github.com/kanboard/kanboard/releases" target="_blank" rel="noopener noreferrer" title="<?= t('Opens in a new window') ?>">
+                            <i class="fa fa-external-link"></i> <?= t('Check for updates') ?>
+                        </a>
+                    </li>
+                </span>
                 <?php endif ?>
                 <br>
-                <li class="app-info-title"><?= t('Data Directory') ?></li>
-                <li class="app-info-value value-path border-bottom-thick"><?= DATA_DIR ?></li>
-                <li class="empty-col"></li>
-                <li class="app-info-title"><?= t('Files Directory') ?></li>
-                <li class="app-info-value value-path border-bottom-thick"><?= FILES_DIR ?></li>
-                <li class="empty-col"></li>
-                <br>
-                <li class="app-info-title"><?= t('Cache Directory') ?></li>
-                <li class="app-info-value value-path border-bottom-thick"><?= CACHE_DIR ?></li>
-                <li class="empty-col"></li>
-                <li class="app-info-title"><?= t('Plugins Directory') ?></li>
-                <li class="app-info-value value-path border-bottom-thick"><?= PLUGINS_DIR ?></li>
-                <br>
-                <li class="app-info-title"><?= t('Log File') ?></li>
-                <li class="app-info-value value-path border-bottom-thick"><?= LOG_FILE ?></li>
-                <li class="empty-col"></li>
-                <li class="app-info-title"><?= t('Session Handler') ?></li>
-                <li class="app-info-value border-bottom-thick">
-                    <?php if (SESSION_HANDLER == 'php'): ?>
-                        <span><?= t('PHP') ?></span>
-                    <?php else: ?>
-                        <span><?= t('Database') ?></span>
-                    <?php endif ?>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('Data Directory') ?></li>
+                    <li class="app-info-value value-path border-bottom-thick"><?= DATA_DIR ?></li>
+                </span>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('Files Directory') ?></li>
+                    <li class="app-info-value value-path border-bottom-thick"><?= FILES_DIR ?></li>
+                </span>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('Cache Directory') ?></li>
+                    <li class="app-info-value value-path border-bottom-thick"><?= CACHE_DIR ?></li>
+                </span>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('Plugins Directory') ?></li>
+                    <li class="app-info-value value-path border-bottom-thick"><?= PLUGINS_DIR ?></li>
+                </span>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('Log File') ?></li>
+                    <li class="app-info-value value-path border-bottom-thick"><?= LOG_FILE ?></li>
+                </span>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('Session Handler') ?></li>
+                    <li class="app-info-value border-bottom-thick">
+                        <?php if (SESSION_HANDLER == 'php'): ?>
+                            <span><?= t('PHP') ?></span>
+                        <?php else: ?>
+                            <span><?= t('Database') ?></span>
+                        <?php endif ?>
                     </li>
-                <li class="empty-col"></li>
-                <li class="app-info-title"><?= t('Session Duration') ?></li>
-                <li class="app-info-value value-version border-bottom-thick"><?= SESSION_DURATION ?> <small><i><?= t('Until browser is closed') ?></i></small></li>
+                </span>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('Session Duration') ?></li>
+                    <li class="app-info-value value-version border-bottom-thick"><?= SESSION_DURATION ?> <small><i><?= t('Until browser is closed') ?></i></small></li>
+                </span>
             </ul>
         </div>
     </section>
