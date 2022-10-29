@@ -13,6 +13,9 @@ Features
 - **Application Information**
   - Displays Kanboard name, version and (if admin user) direct link to GitHub releases for Kanboard
   - Displays useful directory locations and session information
+- **Database Connection**
+  - Display basic database information (without password) from the config file
+  - Moved SQLite database (upload/download) options from About page
 - **PHP Information**
   - Display general PHP settings based on the Kanboard installation requirements
   - Check if both required and optional PHP extensions are installed
@@ -30,6 +33,10 @@ Screenshots
 **Application Information Section**
 
 ![Application Information](../master/screenshot-app.png "Application Information")
+
+**Database Connection Section**
+
+![Database Connection](../master/screenshot-db.png "Database Connection")
 
 **PHP Information Section**
 

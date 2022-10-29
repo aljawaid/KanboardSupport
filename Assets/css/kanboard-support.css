@@ -96,7 +96,7 @@ table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > th {
     border-bottom: 1px solid var(--tech-bg-grey-border-match);
 }
 
-.cell-title, .app-info-title {
+.cell-title, .app-info-title, .db-info-title {
     text-transform: uppercase;
     font-size: .9em;
     font-weight: 600;
@@ -179,20 +179,23 @@ table.support-table.user-table tr td:first-child::before {
 }
 /* END OF TABLE ROW NUMBERS */
 
-.app-info {}
+.app-info, .php-info, .db-info, .mail-info, .server-info {
+    margin-top: 1.5em;
+    margin-bottom: 2em;
+}
 
 .empty-col {
     width: 100px;
 }
 
-.app-info ul li, .php-info ul li {
+.app-info ul li, .php-info ul li, .db-info ul li {
     margin: .2em .4em;
     list-style-type: none;
     display: inline-block;
     margin-bottom: .6em;
 }
 
-.app-info-value {
+.app-info-value, .db-info-value {
     padding: 0 5px;
 }
 

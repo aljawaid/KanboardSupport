@@ -103,6 +103,45 @@
         </div>
     </section>
 
+<!-- DATABASE CONNECTION -->
+    <section class="support-section">
+        <h2 class=""><i class="fa fa-database"></i> <?= t('Database Connection') ?></h2>
+        <div class="db-info">
+            <ul class="">
+                <li class="db-info-title"><?= t('Database Driver') ?></li>
+                <li class="db-info-value value-path border-bottom-thick"><?= DB_DRIVER ?></li>
+                <li class="db-info-title"><?= t('Database Version') ?></li>
+                <li class="db-info-value value-version border-bottom-thick"><?= $this->text->e($db_version) ?></li>
+                <li class="db-info-title"><?= t('Database Username') ?></li>
+                <li class="db-info-value value-path border-bottom-thick"><?= DB_USERNAME ?></li>
+                <li class="db-info-title"><?= t('Database Hostname') ?></li>
+                <li class="db-info-value value-path border-bottom-thick"><?= DB_HOSTNAME ?></li>
+                <li class="db-info-title"><?= t('Database Name') ?></li>
+                <li class="db-info-value value-path border-bottom-thick"><?= DB_NAME ?></li>
+            </ul>
+            <?php if (DB_DRIVER === 'sqlite'): ?>
+                <div class="panel">
+                    <ul>
+                        <li>
+                            <?= t('Database Size') ?>
+                            <strong><?= $this->text->bytes($db_size) ?></strong>
+                        </li>
+                        <li>
+                            <?= $this->url->link(t('Download Database'), 'ConfigController', 'downloadDb', array(), true, 'btn btn-sm') ?>&nbsp;
+                            <?= t('(Gzip compressed SQLite file)') ?>
+                        </li>
+                        <li>
+                            <?= $this->url->link(t('Upload Database'), 'ConfigController', 'uploadDb', array(), false, 'js-modal-medium btn btn-sm') ?>
+                        </li>
+                        <li>
+                            <?= $this->url->link(t('Optimize Database'), 'ConfigController', 'optimizeDb', array(), true, 'btn btn-sm') ?>&nbsp;
+                            <?= t('(VACUUM command)') ?>
+                        </li>
+                    </ul>
+                </div>
+            <?php endif ?>
+        </div>
+    </section>
 <!-- PHP INFORMATION -->
     <section class="support-section">
         <h2 class=""><i class="fa fa-code"></i> <?= t('PHP Information') ?></h2>
@@ -523,34 +562,5 @@
         </div>
     </section>
 
-<?php if (DB_DRIVER === 'sqlite'): ?>
-    <div class="page-header">
-        <h2><?= t('Database') ?></h2>
     </div>
-    <div class="panel">
-        <ul>
-            <li>
-                <?= t('Database size:') ?>
-                <strong><?= $this->text->bytes($db_size) ?></strong>
-            </li>
-            <li>
-                <?= $this->url->link(t('Download the database'), 'ConfigController', 'downloadDb', array(), true) ?>&nbsp;
-                <?= t('(Gzip compressed Sqlite file)') ?>
-            </li>
-            <li>
-                <?= $this->url->link(t('Upload the database'), 'ConfigController', 'uploadDb', array(), false, 'js-modal-medium') ?>
-            </li>
-            <li>
-                <?= $this->url->link(t('Optimize the database'), 'ConfigController', 'optimizeDb', array(), true) ?>&nbsp;
-                <?= t('(VACUUM command)') ?>
-            </li>
-        </ul>
-    </div>
-<?php endif ?>
 
-<div class="page-header">
-    <h2><?= t('License') ?></h2>
-</div>
-<div class="panel">
-<?= nl2br(file_get_contents(ROOT_DIR.DIRECTORY_SEPARATOR.'LICENSE')) ?>
-</div>
