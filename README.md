@@ -8,6 +8,11 @@ Add a support section in the Kanboard Settings interface so that end users can e
 Features
 -------------
 
+- **Directory Permissions**
+  - Check if directories are writeable or not
+  - Display folder owner to Admins
+  - Display detected folder permissions to Admins
+  - Display permissions also in Linux format to Admins
 - **User Configuration**
   - Displays basic settings about the logged in user (including user ID, IP address and browser details) which may be useful to support professionals
   - IP Lookup button for Admin
@@ -24,20 +29,24 @@ Features
   - Show SMTP details if set
   - Show Sendmail details if set
   - Show if mail settings are configured or not
-- **PHP Information**
-  - Display general PHP settings based on the Kanboard installation requirements
-  - Check if both required and optional PHP extensions are installed
-  - Check PHP minimum requirement
-  - Display useful file paths for configuration files
 - **Server Configuration**
   - Show useful path locations
   - Display operating system, versions and ports
   - IP Lookup button for Admin
   - Make secure ports easier to identify
+- **PHP Information**
+  - Display general PHP settings based on the Kanboard installation requirements
+  - Check if both required and optional PHP extensions are installed
+  - Check PHP minimum requirement
+  - Display useful file paths for configuration files
 
 
 Screenshots
 ----------
+
+**Directory Permissions**
+
+![Directory Permissions](../master/screenshot-permissions.png "Directory Permissions")
 
 **User Configuration Section**  
 
