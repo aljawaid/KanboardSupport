@@ -110,4 +110,9 @@ return array(
   'Secure HTTP Protocol' => 'Secure HTTP Protocol',
   'Yes' => 'Yes',
   'No' => 'No',
+  'Directory Permissions' => 'Directory Permissions',
+  'Linux Directory Permissions' => 'Linux Directory Permissions',
+  'Directory Owner' => 'Directory Owner',
+  'This directory is not writeable by the web server user' => 'This directory is not writeable by the web server user',
+  'This directory is writeable by the web server user' => 'This directory is writeable by the web server user',
 );

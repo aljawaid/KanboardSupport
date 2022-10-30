@@ -97,10 +97,21 @@
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Data Directory') ?></li>
                     <li class="app-info-value value-path border-bottom-thick"><?= DATA_DIR ?></li>
-                    <?php if (! is_writable(DATA_DIR)): ?>
-                    not writeable <?= fileperms(DATA_DIR) ?>
-                    <?php else: ?>
-                    is writeable <?= fileperms(DATA_DIR) ?>
+                        <?php if (! is_writable(DATA_DIR)): ?>
+                            <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
+                        <?php else: ?>
+                            <span class="pass-tick" title="<?= t('This directory is writeable by the web server user') ?>">&#10004;</span>
+                        <?php endif ?>
+                        <?php if ($this->user->isAdmin()): ?>
+                        <div id="pCheck" class="p-check">
+                            <?php if (! is_writable(DATA_DIR)): ?>
+                                <?= $this->helper->supportHelper->getPermissions() ?>
+                            <?php else: ?>
+                                <span class="p-dir" title="<?= t('Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissions(DATA_DIR) ?></span>
+                                <span class="p-linux value-ip" title="<?= t('Linux Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissionsLinux(DATA_DIR) ?></span>
+                                <span class="p-owner" title="<?= t('Directory Owner') ?>"><?= $this->helper->supportHelper->getPermissionsOwner(DATA_DIR) ?></span>
+                            <?php endif ?>
+                        </div>
                     <?php endif ?>
                 </span>
                 <span class="data-wrap">

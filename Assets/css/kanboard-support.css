@@ -348,6 +348,8 @@ table.support-table.user-table tr td:first-child::before {
     margin-right: 25px;
     margin-left: 10px;
     margin-top: 20px;
+    margin-bottom: 10px;
+    position: relative;
 }
 
 .server-info {}
@@ -367,4 +369,32 @@ table.support-table.user-table tr td:first-child::before {
 .server-config-value code {
     vertical-align: text-top;
 
+}
+
+#pCheck {
+    position: absolute;
+    right: 20px;
+    margin-top: -3px;
+    font-size: .9em;
+}
+
+.p-type {
+    border: 1px solid var(--tech-bg-grey-border-match);
+    padding: 0px 3px;
+    margin-right: 2px;
+}
+
+.p-check {}
+
+.p-dir {
+    font-family: Arial;
+    letter-spacing: 1px;
+    margin-right: 8px;
+}
+
+.p-linux {
+margin-right: 8px;}
+
+.p-owner {
+    font-family: "Monospace";
 }
