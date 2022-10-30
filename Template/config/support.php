@@ -97,6 +97,11 @@
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Data Directory') ?></li>
                     <li class="app-info-value value-path border-bottom-thick"><?= DATA_DIR ?></li>
+                    <?php if (! is_writable(DATA_DIR)): ?>
+                    not writeable <?= fileperms(DATA_DIR) ?>
+                    <?php else: ?>
+                    is writeable <?= fileperms(DATA_DIR) ?>
+                    <?php endif ?>
                 </span>
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Files Directory') ?></li>
