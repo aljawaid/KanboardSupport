@@ -13,6 +13,7 @@ Features
 - **Application Information**
   - Displays Kanboard name, version and (if admin user) direct link to GitHub releases for Kanboard
   - Displays useful directory locations and session information
+  - Show if debug mode is enabled or not
 - **Database Connection**
   - Display basic database information (without password) from the config file
   - Moved SQLite database (upload/download) options from About page
@@ -28,7 +29,8 @@ Features
   - Check PHP minimum requirement
   - Display useful file paths for configuration files
 - **Server Configuration**
-  - _Coming soon_
+  - Show useful path locations
+  - Display operating system, versions and ports
 
 
 Screenshots
@@ -49,6 +51,10 @@ Screenshots
 **Email Connection Section**
 
 ![Email Connection](../master/screenshot-mail.png "Email Connection")
+
+**Server Configuration Section**
+
+![Server Configuration](../master/screenshot-server.png "Server Configuration")
 
 **PHP Information Section**
 
