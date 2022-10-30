@@ -4,6 +4,8 @@ namespace Kanboard\Plugin\KanboardSupport;
 
 use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
+use Kanboard\Model\UserModel;
+use Kanboard\Controller\UserViewController;
 
 class Plugin extends Base
 {
@@ -47,7 +49,7 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '1.0.0';
+        return '1.5.0';
     }
 
     public function getCompatibleVersion()

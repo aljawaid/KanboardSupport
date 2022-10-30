@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v1.5
+
+### What's Changed
+
+_(most recent changes are listed on top):_
+- NEW: Add Server Configuration Section
+- NEW: Add Abbreviation Hints for Technical Jargon
+- NEW: Add IP Lookup button for Admin
+- Add Server Configuration Section to README
+- NEW: Show Debug Mode
+- FIX: Plugin Name should match Namespace
+- FIX: Styling - Add `data-wrap` CSS class to PHP Information
+- FIX: Styling - Add `data-wrap` CSS class to Application Information
+- FIX: Styling - Add `data-wrap` CSS class to Database Connection
+- NEW: Add Email Connection Section
+- Add Email Connection Section to README
+- Prepare last two sections
+
+
 ## v1.0
 
 ### What's Changed
