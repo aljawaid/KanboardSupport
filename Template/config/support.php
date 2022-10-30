@@ -33,7 +33,13 @@
                     </tr>
                     <tr class="support-table-row">
                         <td class="cell-title"><?= t('Your IP Address') ?></td>
-                        <td class="cell-value value-ip" colspan="3"><?= $_SERVER['REMOTE_ADDR'] ?></td>
+                        <td class="cell-value value-ip" colspan="3"><?= $_SERVER['REMOTE_ADDR'] ?>
+                            <?php if ($this->user->isAdmin()): ?>
+                                <a id="valueBTN" href="https://www.whois.com/whois/<?= $_SERVER['REMOTE_ADDR'] ?>" class="value-btn" target="_blank" rel="noopener noreferrer" title="<?= t('Opens in a new window') ?>">
+                                    <i class="fa fa-external-link"></i> <?= t('Lookup IP') ?>
+                                </a>
+                            <?php endif ?>
+                        </td>
                     </tr>
                     <tr class="support-table-row">
                         <td class="cell-title"><?= t('Current Page') ?></td>
