@@ -32,7 +32,7 @@ class Plugin extends Base
 
     public function getPluginName()
     {
-        return 'Kanboard Support';
+        return 'KanboardSupport';
     }
 
     public function getPluginDescription()
