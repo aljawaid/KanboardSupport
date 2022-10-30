@@ -47,15 +47,23 @@
 }
 
 .support-section {
-    margin: 20px 15px 30px 15px;
+    margin: 20px 15px 55px 15px;
 }
 
 .w-50 {
     width: 50px;
 }
 
-i.pp-white {
-    color: var(--pp-white);
+i.fa-lock {
+    color: var(--pp-green);
+}
+
+i.fa-unlock {
+    color: var(--pp-red-alt);
+}
+
+h2 .fa-code {
+    font-weight: bold;
 }
 
 table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > th {
@@ -96,10 +104,9 @@ table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > th {
     border-bottom: 1px solid var(--tech-bg-grey-border-match);
 }
 
-.cell-title, .app-info-title, .db-info-title {
+.cell-title, .app-info-title, .db-info-title, .mail-info-title, .server-config-title {
     text-transform: uppercase;
     font-size: .9em;
-    font-weight: 600;
 }
 
 .cell-value {
@@ -119,7 +126,6 @@ table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > th {
 }
 
 .value-ip {
-    white-space: pre;
     font-family: monospace;
     font-size: 1.2em;
     padding-top: 5px;
@@ -210,12 +216,12 @@ table.support-table.user-table tr td:first-child::before {
     width: 100px;
 }
 
-.app-info ul li, .php-info ul li, .db-info ul li, .mail-info ul li {
+.app-info ul li, .php-info ul li, .db-info ul li, .mail-info ul li, .server-info ul li {
     list-style-type: none;
     display: inline-block;
 }
 
-.app-info-value, .db-info-value, .mail-info-value {
+.app-info-value, .db-info-value, .mail-info-value, .server-config-value {
     padding: 0 5px;
 }
 
@@ -236,12 +242,26 @@ table.support-table.user-table tr td:first-child::before {
     vertical-align: top;
 }
 
+.fail-x-alt {
+    font-style: normal;
+    font-size: 1.3em;
+    color: var(--pp-red-alt);
+    font-weight: bold;
+}
+
 .pass-tick {
     font-style: normal;
     color: var(--pp-green);
     font-size: 1.3em;
     font-weight: bold;
     vertical-align: top;
+}
+
+.pass-tick-alt {
+    font-style: normal;
+    color: var(--pp-green);
+    font-size: 1.3em;
+    font-weight: bold;
 }
 
 .tile-pass {
@@ -294,7 +314,7 @@ table.support-table.user-table tr td:first-child::before {
     text-align: center;
 }
 
-.tile-name code {
+.tile-name code, .server-config-value code {
     border-radius: var(--border-radius);
     background-color: rgba(27, 31, 35, 0.22) !important;
     font-size: 0.9rem !important;
@@ -328,4 +348,23 @@ table.support-table.user-table tr td:first-child::before {
     margin-right: 25px;
     margin-left: 10px;
     margin-top: 20px;
+}
+
+.server-info {}
+
+.server-col {
+    display: block;
+}
+
+.server-config {}
+
+.server-value {}
+
+.server-list {
+    margin-left: 10px;
+}
+
+.server-config-value code {
+    vertical-align: text-top;
+
 }

@@ -281,6 +281,97 @@
         </div>
     </section>
 
+<!-- SERVER CONFIGURATION -->
+    <section class="support-section">
+        <h2 class=""><i class="fa fa-server"></i> <?= t('Server Configuration') ?></h2>
+        <div class="server-info">
+            <div class="server-col">
+                <ul class="server-list">
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title"><?= t('Operating System') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick"><?= @php_uname('s').' '.@php_uname('r').' '.@php_uname('m') ?></li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title"><?= t('HTTP Client') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick"><?= Kanboard\Core\Http\Client::backend() ?></li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title" title="<?= t('Website Address') ?>"><?= t('Domain') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick value-url"><?= $_SERVER['SERVER_NAME'] ?></li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title"><?= t('Server IP Address') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick value-ip"><?= $_SERVER['SERVER_ADDR'] ?>
+                        </li>
+                            <?php if ($this->user->isAdmin()): ?>
+                                <a id="valueBTN" href="https://www.whois.com/whois/<?= $_SERVER['SERVER_ADDR'] ?>" class="value-btn" target="_blank" rel="noopener noreferrer" title="<?= t('Opens in a new window') ?>">
+                                    <i class="fa fa-external-link"></i> <?= t('Lookup IP') ?>
+                                </a>
+                            <?php endif ?>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title"><?= t('Server Port') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick value-ip">
+                            <?php if ($_SERVER['SERVER_PORT'] == '443'): ?>
+                                <i class="fa fa-lock pp-green" title="<?= t('Secure') ?>"></i> <?= $_SERVER['SERVER_PORT'] ?>
+                            <?php else: ?>
+                                <i class="fa fa-unlock pp-red" title="<?= t('Not Secure') ?>"></i> <?= $_SERVER['SERVER_PORT'] ?>
+                            <?php endif ?>
+                        </li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title"><?= t('System Temporary Directory') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick value-path"><?= sys_get_temp_dir() ?></li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title"><?= t('Document Root') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick value-path"><?= $_SERVER['DOCUMENT_ROOT'] ?></li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title"><?= t('Session Save Path') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick value-path"><?= session_save_path() ?></li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title"><?= t('Absolute Path') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick value-path"><?= $_SERVER['SCRIPT_FILENAME'] ?></li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title" title="<?= t('Common Gateway Interface') ?>"><?= t('CGI Version') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick"><?= $_SERVER['GATEWAY_INTERFACE'] ?></li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title"><?= t('HTTP Web Server') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick"><?= $_SERVER['SERVER_SOFTWARE'] ?></li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title"><?= t('Pretty URLs') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick">
+                            <?php if ($this->user->isAdmin() && ($_SERVER['HTTP_MOD_REWRITE'] == 'On')): ?>
+                                <?= t('On') ?> <span class="pass-tick-alt">&#10004;</span><code>HTTP_MOD_REWRITE</code>
+                            <?php else: ?>
+                                <?= t('Off') ?> <span class="fail-x-alt">&#10008;</span>
+                            <?php endif ?>
+                        </li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title"><?= t('Server Protocol') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick"><?= $_SERVER['SERVER_PROTOCOL'] ?></li>
+                    </span>
+                    <span class="data-wrap">
+                        <li class="server-config server-config-title"><?= t('Secure HTTP Protocol') ?></li>
+                        <li class="server-value server-config-value border-bottom-thick">
+                            <?php if ($_SERVER['HTTPS'] == 'on'): ?>
+                                <?= t('Yes') ?> <span class="pass-tick-alt">&#10004;</span>
+                            <?php else: ?>
+                                <?= t('No') ?> <span class="pass-fail-x-alt">&#10004;</span>
+                            <?php endif ?>
+                        </li>
+                    </span>
+                </ul>
+            </div>
+        </div>
+    </section>
+
 <!-- PHP INFORMATION -->
     <section class="support-section">
         <h2 class=""><i class="fa fa-code"></i> <?= t('PHP Information') ?></h2>
@@ -710,6 +801,3 @@
             <?php endif ?>
         </div>
     </section>
-
-    </div>
-
