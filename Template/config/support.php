@@ -77,6 +77,16 @@
                     </li>
                 </span>
                 <?php endif ?>
+                <span class="data-wrap">
+                    <li class="app-info-title"><?= t('Debug Mode') ?></li>
+                    <li class="app-info-value border-bottom-thick">
+                        <?php if (!defined(DEBUG)): ?>
+                            <?= t('Not Enabled') ?>
+                        <?php elseif (defined(DEBUG)): ?>
+                            <?= t('Enabled') ?>
+                        <?php endif ?>
+                    </li>
+                </span>
                 <br>
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Data Directory') ?></li>
