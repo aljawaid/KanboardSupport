@@ -203,7 +203,7 @@
                 </span>
                 <?php if ($this->user->isAdmin()): ?>
                     <span class="data-wrap">
-                        <li class="mail-info-title"><?= t('BCC') ?></li>
+                        <li class="mail-info-title"><abbr title="Blind Carbon Copy"><?= t('BCC') ?></abbr></li>
                         <li class="mail-info-value border-bottom-thick">
                         <?php if (empty(MAIL_BCC)): ?>
                             <i><?= t('Not Set') ?></i>
@@ -240,7 +240,7 @@
                     </span>
                     <?php if (!empty(MAIL_SMTP_ENCRYPTION)): ?>
                         <span class="data-wrap">
-                            <li class="mail-info-title"><?= t('SMTP Encryption') ?></li>
+                            <li class="mail-info-title"><abbr title="Simple Mail Transport Protocol"><?= t('SMTP Encryption') ?></abbr></li>
                             <li class="mail-info-value border-bottom-thick">
                             <?php if (MAIL_SMTP_ENCRYPTION == 'ssl'): ?>
                                 <?= t('SSL') ?>
@@ -253,15 +253,15 @@
                         </span>
                     <?php endif ?>
                     <span class="data-wrap">
-                        <li class="mail-info-title"><?= t('SMTP Port') ?></li>
+                        <li class="mail-info-title"><abbr title="Simple Mail Transport Protocol"><?= t('SMTP Port') ?></abbr></li>
                         <li class="mail-info-value value-path border-bottom-thick"><?= MAIL_SMTP_PORT ?></li>
                     </span>
                     <span class="data-wrap">
-                        <li class="mail-info-title"><?= t('SMTP Username') ?></li>
+                        <li class="mail-info-title"><abbr title="Simple Mail Transport Protocol"><?= t('SMTP Username') ?></abbr></li>
                         <li class="mail-info-value border-bottom-thick"><?= MAIL_SMTP_USERNAME ?></li>
                     </span>
                     <span class="data-wrap">
-                        <li class="mail-info-title"><?= t('SMTP HELO Command Name') ?></li>
+                        <li class="mail-info-title"><abbr title="Simple Mail Transport Protocol"><?= t('SMTP HELO Command Name') ?></abbr></li>
                         <li class="mail-info-value border-bottom-thick">
                         <?php if (!empty(MAIL_SMTP_HELO_NAME)): ?>
                             <?= MAIL_SMTP_HELO_NAME ?>
