@@ -105,7 +105,9 @@
                         <?php if ($this->user->isAdmin()): ?>
                         <div id="pCheck" class="p-check">
                             <?php if (! is_writable(DATA_DIR)): ?>
-                                <?= $this->helper->supportHelper->getPermissions() ?>
+                                <span class="p-dir" title="<?= t('Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissions(DATA_DIR) ?></span>
+                                <span class="p-linux value-ip" title="<?= t('Linux Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissionsLinux(DATA_DIR) ?></span>
+                                <span class="p-owner" title="<?= t('Directory Owner') ?>"><?= $this->helper->supportHelper->getPermissionsOwner(DATA_DIR) ?></span>
                             <?php else: ?>
                                 <span class="p-dir" title="<?= t('Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissions(DATA_DIR) ?></span>
                                 <span class="p-linux value-ip" title="<?= t('Linux Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissionsLinux(DATA_DIR) ?></span>
@@ -117,6 +119,24 @@
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Files Directory') ?></li>
                     <li class="app-info-value value-path border-bottom-thick"><?= FILES_DIR ?></li>
+                        <?php if (! is_writable(FILES_DIR)): ?>
+                            <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
+                        <?php else: ?>
+                            <span class="pass-tick" title="<?= t('This directory is writeable by the web server user') ?>">&#10004;</span>
+                        <?php endif ?>
+                        <?php if ($this->user->isAdmin()): ?>
+                        <div id="pCheck" class="p-check">
+                            <?php if (! is_writable(FILES_DIR)): ?>
+                                <span class="p-dir" title="<?= t('Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissions(FILES_DIR) ?></span>
+                                <span class="p-linux value-ip" title="<?= t('Linux Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissionsLinux(FILES_DIR) ?></span>
+                                <span class="p-owner" title="<?= t('Directory Owner') ?>"><?= $this->helper->supportHelper->getPermissionsOwner(FILES_DIR) ?></span>
+                            <?php else: ?>
+                                <span class="p-dir" title="<?= t('Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissions(FILES_DIR) ?></span>
+                                <span class="p-linux value-ip" title="<?= t('Linux Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissionsLinux(FILES_DIR) ?></span>
+                                <span class="p-owner" title="<?= t('Directory Owner') ?>"><?= $this->helper->supportHelper->getPermissionsOwner(FILES_DIR) ?></span>
+                            <?php endif ?>
+                        </div>
+                    <?php endif ?>
                 </span>
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Cache Directory') ?></li>
@@ -125,6 +145,24 @@
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Plugins Directory') ?></li>
                     <li class="app-info-value value-path border-bottom-thick"><?= PLUGINS_DIR ?></li>
+                    <?php if (! is_writable(PLUGINS_DIR)): ?>
+                            <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
+                        <?php else: ?>
+                            <span class="pass-tick" title="<?= t('This directory is writeable by the web server user') ?>">&#10004;</span>
+                        <?php endif ?>
+                        <?php if ($this->user->isAdmin()): ?>
+                        <div id="pCheck" class="p-check">
+                            <?php if (! is_writable(PLUGINS_DIR)): ?>
+                                <span class="p-dir" title="<?= t('Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissions(PLUGINS_DIR) ?></span>
+                                <span class="p-linux value-ip" title="<?= t('Linux Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissionsLinux(PLUGINS_DIR) ?></span>
+                                <span class="p-owner" title="<?= t('Directory Owner') ?>"><?= $this->helper->supportHelper->getPermissionsOwner(PLUGINS_DIR) ?></span>
+                            <?php else: ?>
+                                <span class="p-dir" title="<?= t('Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissions(PLUGINS_DIR) ?></span>
+                                <span class="p-linux value-ip" title="<?= t('Linux Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissionsLinux(PLUGINS_DIR) ?></span>
+                                <span class="p-owner" title="<?= t('Directory Owner') ?>"><?= $this->helper->supportHelper->getPermissionsOwner(PLUGINS_DIR) ?></span>
+                            <?php endif ?>
+                        </div>
+                    <?php endif ?>
                 </span>
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Log File') ?></li>
@@ -342,10 +380,46 @@
                     <span class="data-wrap">
                         <li class="server-config server-config-title"><?= t('Document Root') ?></li>
                         <li class="server-value server-config-value border-bottom-thick value-path"><?= $_SERVER['DOCUMENT_ROOT'] ?></li>
+                        <?php if (! is_writable($_SERVER['DOCUMENT_ROOT'])): ?>
+                            <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
+                        <?php else: ?>
+                            <span class="pass-tick" title="<?= t('This directory is writeable by the web server user') ?>">&#10004;</span>
+                        <?php endif ?>
+                        <?php if ($this->user->isAdmin()): ?>
+                        <div id="pCheck" class="p-check">
+                            <?php if (! is_writable($_SERVER['DOCUMENT_ROOT'])): ?>
+                                <span class="p-dir" title="<?= t('Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissions($_SERVER['DOCUMENT_ROOT']) ?></span>
+                                <span class="p-linux value-ip" title="<?= t('Linux Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissionsLinux($_SERVER['DOCUMENT_ROOT']) ?></span>
+                                <span class="p-owner" title="<?= t('Directory Owner') ?>"><?= $this->helper->supportHelper->getPermissionsOwner($_SERVER['DOCUMENT_ROOT']) ?></span>
+                            <?php else: ?>
+                                <span class="p-dir" title="<?= t('Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissions($_SERVER['DOCUMENT_ROOT']) ?></span>
+                                <span class="p-linux value-ip" title="<?= t('Linux Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissionsLinux($_SERVER['DOCUMENT_ROOT']) ?></span>
+                                <span class="p-owner" title="<?= t('Directory Owner') ?>"><?= $this->helper->supportHelper->getPermissionsOwner($_SERVER['DOCUMENT_ROOT']) ?></span>
+                            <?php endif ?>
+                        </div>
+                    <?php endif ?>
                     </span>
                     <span class="data-wrap">
                         <li class="server-config server-config-title"><?= t('Session Save Path') ?></li>
                         <li class="server-value server-config-value border-bottom-thick value-path"><?= session_save_path() ?></li>
+                        <?php if (! is_writable(session_save_path())): ?>
+                            <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
+                        <?php else: ?>
+                            <span class="pass-tick" title="<?= t('This directory is writeable by the web server user') ?>">&#10004;</span>
+                        <?php endif ?>
+                        <?php if ($this->user->isAdmin()): ?>
+                        <div id="pCheck" class="p-check">
+                            <?php if (! is_writable(session_save_path())): ?>
+                                <span class="p-dir" title="<?= t('Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissions(session_save_path()) ?></span>
+                                <span class="p-linux value-ip" title="<?= t('Linux Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissionsLinux(session_save_path()) ?></span>
+                                <span class="p-owner" title="<?= t('Directory Owner') ?>"><?= $this->helper->supportHelper->getPermissionsOwner(session_save_path()) ?></span>
+                            <?php else: ?>
+                                <span class="p-dir" title="<?= t('Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissions(session_save_path()) ?></span>
+                                <span class="p-linux value-ip" title="<?= t('Linux Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissionsLinux(session_save_path()) ?></span>
+                                <span class="p-owner" title="<?= t('Directory Owner') ?>"><?= $this->helper->supportHelper->getPermissionsOwner(session_save_path()) ?></span>
+                            <?php endif ?>
+                        </div>
+                    <?php endif ?>
                     </span>
                     <span class="data-wrap">
                         <li class="server-config server-config-title"><?= t('Absolute Path') ?></li>
