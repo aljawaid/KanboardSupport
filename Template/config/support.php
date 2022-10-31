@@ -3,7 +3,7 @@
     $user2 = $this->user->getFullname();
 ?>
     <div class="page-header" style="margin-top: 10px;">
-        <h2><?= t('Technical Support') ?></h2>
+        <h2><i class="fa fa-question-circle"></i> <?= t('Technical Support') ?></h2>
     </div>
 
 <!-- USER CONFIGURATION -->

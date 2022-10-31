@@ -19,6 +19,8 @@ class Plugin extends Base
 
         // SETTINGS SIDEBAR - Template Hook - Override name should start lowercase e.g. pluginNameExampleCamelCase
         $this->template->hook->attach('template:config:sidebar', 'kanboardSupport:config/sidebar');
+        // TOP RIGHT MENU
+        $this->template->hook->attach('template:header:dropdown', 'kanboardSupport:header/user_dropdown');
 
         // SUPPORT PAGE - Routes
         $this->route->addRoute('/settings/support', 'TechnicalSupportController', 'show', 'KanboardSupport');
