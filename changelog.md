@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v2.0
+
+### What's Changed
+
+_(most recent changes are listed on top):_
+- Handle Cache Directory Permission Check Differently
+- Add More Directory Permissions Check- Based on installation docs
+- Add Directory Permissions to README
+- NEW: Add Directory Permissions Check
+- Add New Helper Functions for Directory Permissions Checks
+- Styling improvements
+- Updated translations for `en_GB`
+
+
 ## v1.5
 
 ### What's Changed
