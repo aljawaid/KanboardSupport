@@ -77,6 +77,10 @@ Usage
 
 Go to `Settings` &#10562; `Technical Support` 
 
+**_or_**
+
+Direct Link: Go to User Menu (top right) &#10562; `Technical Support`
+
 Compatibility
 -------------
 
