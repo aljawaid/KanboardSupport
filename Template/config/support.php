@@ -141,6 +141,28 @@
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Cache Directory') ?></li>
                     <li class="app-info-value value-path border-bottom-thick"><?= CACHE_DIR ?></li>
+                    <?php if (! is_writable(CACHE_DIR)): ?>
+                            <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
+                        <?php else: ?>
+                            <span class="pass-tick" title="<?= t('This directory is writeable by the web server user') ?>">&#10004;</span>
+                        <?php endif ?>
+                        <?php if (CACHE_DRIVER == 'memory'): ?>
+                            <span class="p-note"><i><?= t('Not required as Cache Driver is set to') ?></i> <code><?= t('memory') ?></code></span>
+                        <?php else: ?>
+                            <?php if ($this->user->isAdmin()): ?>
+                            <div id="pCheck" class="p-check">
+                            <?php if (! is_writable(CACHE_DIR)): ?>
+                                <span class="p-dir" title="<?= t('Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissions(CACHE_DIR) ?></span>
+                                <span class="p-linux value-ip" title="<?= t('Linux Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissionsLinux(CACHE_DIR) ?></span>
+                                <span class="p-owner" title="<?= t('Directory Owner') ?>"><?= $this->helper->supportHelper->getPermissionsOwner(CACHE_DIR) ?></span>
+                            <?php else: ?>
+                                <span class="p-dir" title="<?= t('Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissions(CACHE_DIR) ?></span>
+                                <span class="p-linux value-ip" title="<?= t('Linux Directory Permissions') ?>"><?= $this->helper->supportHelper->getPermissionsLinux(CACHE_DIR) ?></span>
+                                <span class="p-owner" title="<?= t('Directory Owner') ?>"><?= $this->helper->supportHelper->getPermissionsOwner(CACHE_DIR) ?></span>
+                            <?php endif ?>
+                            </div>
+                            <?php endif ?>
+                        <?php endif ?>
                 </span>
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Plugins Directory') ?></li>

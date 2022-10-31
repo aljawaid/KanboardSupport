@@ -405,3 +405,14 @@ margin-right: 8px;}
 .p-owner {
     font-family: "Monospace";
 }
+
+.p-note {
+    position: absolute;
+    right: 20px;
+    font-size: .8em;
+    bottom: -16px;
+}
+
+.p-note code {
+    font-size: .8rem !important;
+}

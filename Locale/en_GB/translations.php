@@ -115,4 +115,6 @@ return array(
   'Directory Owner' => 'Directory Owner',
   'This directory is not writeable by the web server user' => 'This directory is not writeable by the web server user',
   'This directory is writeable by the web server user' => 'This directory is writeable by the web server user',
+  'Not required as Cache Driver is set to' => 'Not required as Cache Driver is set to',
+  'memory' => 'memory',
 );
