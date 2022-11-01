@@ -22,14 +22,12 @@
                     <tr class="support-table-row">
                         <td class="cell-title"><?= t('Your Profile Full Name') ?></td>
                         <td class="cell-value value-name" width=""><?= $this->user->getFullname() ?></td>
-                        <td class="cell-title no-border-left text-right" width="100px"><?= t('Your Role') ?></td>
-                        <td class="cell-value no-border-left text-center" width="150px"><?= $this->user->getRoleName($user['role']) ?></td>
-                    </tr>
-                    <tr class="support-table-row">
                         <td class="cell-title"><?= t('Your User ID') ?></td>
                         <td class="cell-value value"><?= $this->user->getid() ?></td>
-                        <td class="cell-title no-border-left text-right" width="100px"><?= t('Status') ?></td>
-                        <td class="cell-value text-center" width="150px"><?= $user2['is_active'] ? t('Active') : t('Inactive') ?></td>
+                    </tr>
+                    <tr class="support-table-row">
+                        <td class="cell-title"><?= t('Your Role') ?></td>
+                        <td class="cell-value" colspan="3"><?= $this->user->getRoleName($user['role']) ?></td>
                     </tr>
                     <tr class="support-table-row">
                         <td class="cell-title"><?= t('Your IP Address') ?></td>
