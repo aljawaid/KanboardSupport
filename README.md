@@ -126,13 +126,15 @@ Translations
 ------------
 
 - English (UK)
+- German
 - _Contributors welcome_
 
 
 Authors & Contributors
 ----------------------
 
-- @aljawaid - Author
+- [@aljawaid](https://github.com/aljawaid) - Author
+- [RainerBielefeld](https://github.com/RainerBielefeld) - Contributor
 - _Contributors welcome_
 
 License
