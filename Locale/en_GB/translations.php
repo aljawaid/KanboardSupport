@@ -1,8 +1,8 @@
 <?php
 return array(
-  'KanboardSupport' => 'Kanboard Technical Support',
+  'KanboardSupport' => 'Kanboard Support Information',
   'Add a support section in the Kanboard Settings interface so that end users can easily gather any information required by their internal technical support departments for troubleshooting.' => 'Add a support section in the Kanboard Settings interface so that end users can easily gather any information required by their internal technical support departments for troubleshooting.',
-  'Technical Support' => 'Technical Support',
+  'Technical Information' => 'Technical Information',
   'User Configuration' => 'User Configuration',
   'User Information' => 'User Information',
   'Your Profile Full Name' => 'Your Profile Full Name',

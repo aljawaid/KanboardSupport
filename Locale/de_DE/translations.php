@@ -2,7 +2,7 @@
 return array(
   'KanboardSupport' => 'Kanboard technische Support-Infos',
   'Add a support section in the Kanboard Settings interface so that end users can easily gather any information required by their internal technical support departments for troubleshooting.' => 'Fügen Sie einen Support-Bereich in die Kanboard-Einstellungen ein, damit die Endbenutzer leicht alle Informationen sammeln können, die ihre internen technischen Support-Abteilungen für die Fehlersuche benötigen.',
-  'Technical Support' => 'Technischer Support',
+  'Technical Information' => 'Technischer Informationen',
   'User Configuration' => 'Benutzer-Konfiguration',
   'User Information' => 'Benutzer-Informationen',
   'Your Profile Full Name' => 'Vollständiger Name Ihres Profils',
