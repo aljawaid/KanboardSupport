@@ -117,4 +117,7 @@ return array(
   'This directory is writeable by the web server user' => 'This directory is writeable by the web server user',
   'Not required as Cache Driver is set to' => 'Not required as Cache Driver is set to',
   'memory' => 'memory',
+  'Your Data Privacy' => 'Your Data Privacy',
+  'This page shows sensitive data. Hide selective information before sharing.' => 'This page shows sensitive data. Hide selective information before sharing.',
+  'Hide Data' => 'Hide Data',
 );

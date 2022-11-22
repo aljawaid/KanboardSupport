@@ -17,6 +17,10 @@ class Plugin extends Base
         // CSS - Asset Hook - keep filename lowercase
         $this->hook->on('template:layout:css', array('template' => 'plugins/KanboardSupport/Assets/css/kanboard-support.css'));
 
+        // JS - Asset Hook
+        //  - Keep filename lowercase
+        $this->hook->on('template:layout:js', array('template' => 'plugins/KanboardSupport/Assets/js/kanboard-support.js'));
+
         // SETTINGS SIDEBAR - Template Hook - Override name should start lowercase e.g. pluginNameExampleCamelCase
         $this->template->hook->attach('template:config:sidebar', 'kanboardSupport:config/sidebar');
         // TOP RIGHT MENU

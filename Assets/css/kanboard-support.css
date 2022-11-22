@@ -435,3 +435,38 @@ margin-right: 8px;}
 .p-note code {
     font-size: .8rem !important;
 }
+
+.privacy-data::after {
+    content: '<data hidden>';
+    font-style: italic;
+    visibility: visible;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.privacy-data {
+    position: relative;
+    visibility: hidden;
+    filter: blur(1px) brightness(0.5);
+    color: var(--pp-grey);
+}
+
+.data-btn {
+    text-decoration: none !important;
+    padding: 0px 3px 1px 3px;
+    font-size: 1em;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-top: 10px;
+    text-transform: uppercase;
+    border: 2px solid var(--tech-bg-grey-border-match);
+    border-radius: var(--border-radius);
+}
+
+.data-btn svg {
+    vertical-align: bottom;
+}
+
+.privacy-none {
+    display: none;
+}

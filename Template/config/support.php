@@ -31,9 +31,10 @@
                     </tr>
                     <tr class="support-table-row">
                         <td class="cell-title"><?= t('Your IP Address') ?></td>
-                        <td class="cell-value value-ip" colspan="3"><?= $_SERVER['REMOTE_ADDR'] ?>
+                        <td class="cell-value value-ip" colspan="3">
+                            <span class="privacy"><?= $_SERVER['REMOTE_ADDR'] ?></span>
                             <?php if ($this->user->isAdmin()): ?>
-                                <a id="valueBTN" href="https://www.whois.com/whois/<?= $_SERVER['REMOTE_ADDR'] ?>" class="value-btn" target="_blank" rel="noopener noreferrer" title="<?= t('Opens in a new window') ?>">
+                                <a id="valueBTN" href="https://www.whois.com/whois/<?= $_SERVER['REMOTE_ADDR'] ?>" class="value-btn privacy-delete" target="_blank" rel="noopener noreferrer" title="<?= t('Opens in a new window') ?>">
                                     <i class="fa fa-external-link"></i> <?= t('Lookup IP') ?>
                                 </a>
                             <?php endif ?>
@@ -41,7 +42,7 @@
                     </tr>
                     <tr class="support-table-row">
                         <td class="cell-title"><?= t('Current Page') ?></td>
-                        <td class="cell-value value-url" colspan="3"><?= $_SERVER['SCRIPT_URI'] ?></td>
+                        <td class="cell-value value-url privacy" colspan="3"><?= $_SERVER['SCRIPT_URI'] ?></td>
                     </tr>
                     <tr class="support-table-row">
                         <td class="cell-title"><?= t('Your Browser Name') ?></td>
@@ -56,6 +57,20 @@
         </div>
     </section>
 
+<!-- PRIVACY WARNING -->
+    <section class="support-section">
+        <h2 class=""><i class="fa fa-warning pp-red"></i> <?= t('Your Data Privacy') ?></h2>
+        <div class="">
+            <p class=""><?= t('This page shows sensitive data. Hide selective information before sharing.') ?></p>
+            <button class="data-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
+                    <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
+                    <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
+                </svg> <?= t('Hide Data') ?>
+            </button>
+        </div>
+    </section>
+
 <!-- APPLICATION INFORMATION -->
     <section class="support-section">
         <h2 class=""><i class="fa fa-cog"></i> <?= t('Application Information') ?></h2>
@@ -63,7 +78,7 @@
             <ul class="">
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Application Name') ?></li>
-                    <li class="app-info-value border-bottom-thick"><?= t('Kanboard') ?></li>
+                    <li class="app-info-value border-bottom-thick privacy"><?= t('Kanboard') ?></li>
                 </span>
                 <li class="empty-col"></li>
                 <span class="data-wrap">
@@ -94,7 +109,7 @@
                 <br>
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Data Directory') ?></li>
-                    <li class="app-info-value value-path border-bottom-thick"><?= DATA_DIR ?></li>
+                    <li class="app-info-value value-path border-bottom-thick privacy"><?= DATA_DIR ?></li>
                         <?php if (! is_writable(DATA_DIR)): ?>
                             <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
                         <?php else: ?>
@@ -116,7 +131,7 @@
                 </span>
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Files Directory') ?></li>
-                    <li class="app-info-value value-path border-bottom-thick"><?= FILES_DIR ?></li>
+                    <li class="app-info-value value-path border-bottom-thick privacy"><?= FILES_DIR ?></li>
                         <?php if (! is_writable(FILES_DIR)): ?>
                             <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
                         <?php else: ?>
@@ -138,7 +153,7 @@
                 </span>
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Cache Directory') ?></li>
-                    <li class="app-info-value value-path border-bottom-thick"><?= CACHE_DIR ?></li>
+                    <li class="app-info-value value-path border-bottom-thick privacy"><?= CACHE_DIR ?></li>
                     <?php if (! is_writable(CACHE_DIR)): ?>
                             <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
                         <?php else: ?>
@@ -164,7 +179,7 @@
                 </span>
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Plugins Directory') ?></li>
-                    <li class="app-info-value value-path border-bottom-thick"><?= PLUGINS_DIR ?></li>
+                    <li class="app-info-value value-path border-bottom-thick privacy"><?= PLUGINS_DIR ?></li>
                     <?php if (! is_writable(PLUGINS_DIR)): ?>
                             <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
                         <?php else: ?>
@@ -186,7 +201,7 @@
                 </span>
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Log File') ?></li>
-                    <li class="app-info-value value-path border-bottom-thick"><?= LOG_FILE ?></li>
+                    <li class="app-info-value value-path border-bottom-thick privacy"><?= LOG_FILE ?></li>
                 </span>
                 <span class="data-wrap">
                     <li class="app-info-title"><?= t('Session Handler') ?></li>
@@ -221,15 +236,15 @@
                 </span>
                 <span class="data-wrap">
                     <li class="db-info-title"><?= t('Database Username') ?></li>
-                    <li class="db-info-value value-path border-bottom-thick"><?= DB_USERNAME ?></li>
+                    <li class="db-info-value value-path border-bottom-thick privacy"><?= DB_USERNAME ?></li>
                 </span>
                 <span class="data-wrap">
                     <li class="db-info-title"><?= t('Database Hostname') ?></li>
-                    <li class="db-info-value value-path border-bottom-thick"><?= DB_HOSTNAME ?></li>
+                    <li class="db-info-value value-path border-bottom-thick privacy"><?= DB_HOSTNAME ?></li>
                 </span>
                 <span class="data-wrap">
                     <li class="db-info-title"><?= t('Database Name') ?></li>
-                    <li class="db-info-value value-path border-bottom-thick"><?= DB_NAME ?></li>
+                    <li class="db-info-value value-path border-bottom-thick privacy"><?= DB_NAME ?></li>
                 </span>
             </ul>
             <?php if (DB_DRIVER === 'sqlite'): ?>
@@ -273,12 +288,12 @@
                 </span>
                 <span class="data-wrap">
                     <li class="mail-info-title"><?= t('Sender Email') ?></li>
-                    <li class="mail-info-value border-bottom-thick"><?= MAIL_FROM ?></li>
+                    <li class="mail-info-value border-bottom-thick privacy"><?= MAIL_FROM ?></li>
                 </span>
                 <?php if ($this->user->isAdmin()): ?>
                     <span class="data-wrap">
                         <li class="mail-info-title"><abbr title="Blind Carbon Copy"><?= t('BCC') ?></abbr></li>
-                        <li class="mail-info-value border-bottom-thick">
+                        <li class="mail-info-value border-bottom-thick privacy">
                         <?php if (empty(MAIL_BCC)): ?>
                             <i><?= t('Not Set') ?></i>
                         <?php else: ?>
@@ -310,7 +325,7 @@
                 <?php if (MAIL_TRANSPORT == 'smtp'): ?>
                     <span class="data-wrap">
                         <li class="mail-info-title"><?= t('Mail Server Hostname') ?></li>
-                        <li class="mail-info-value value-path border-bottom-thick"><?= MAIL_SMTP_HOSTNAME ?></li>
+                        <li class="mail-info-value value-path border-bottom-thick privacy"><?= MAIL_SMTP_HOSTNAME ?></li>
                     </span>
                     <?php if (!empty(MAIL_SMTP_ENCRYPTION)): ?>
                         <span class="data-wrap">
@@ -332,7 +347,7 @@
                     </span>
                     <span class="data-wrap">
                         <li class="mail-info-title"><abbr title="Simple Mail Transport Protocol"><?= t('SMTP Username') ?></abbr></li>
-                        <li class="mail-info-value border-bottom-thick"><?= MAIL_SMTP_USERNAME ?></li>
+                        <li class="mail-info-value border-bottom-thick privacy"><?= MAIL_SMTP_USERNAME ?></li>
                     </span>
                     <span class="data-wrap">
                         <li class="mail-info-title"><abbr title="Simple Mail Transport Protocol"><?= t('SMTP HELO Command Name') ?></abbr></li>
@@ -356,7 +371,7 @@
     </section>
 
 <!-- SERVER CONFIGURATION -->
-    <section class="support-section">
+    <section id="ServerConfig" class="support-section">
         <h2 class=""><i class="fa fa-server"></i> <?= t('Server Configuration') ?></h2>
         <div class="server-info">
             <div class="server-col">
@@ -371,14 +386,14 @@
                     </span>
                     <span class="data-wrap">
                         <li class="server-config server-config-title" title="<?= t('Website Address') ?>"><?= t('Domain') ?></li>
-                        <li class="server-value server-config-value border-bottom-thick value-url"><?= $_SERVER['SERVER_NAME'] ?></li>
+                        <li class="server-value server-config-value border-bottom-thick value-url privacy"><?= $_SERVER['SERVER_NAME'] ?></li>
                     </span>
                     <span class="data-wrap">
                         <li class="server-config server-config-title"><?= t('Server IP Address') ?></li>
-                        <li class="server-value server-config-value border-bottom-thick value-ip"><?= $_SERVER['SERVER_ADDR'] ?>
+                        <li class="server-value server-config-value border-bottom-thick value-ip privacy"><?= $_SERVER['SERVER_ADDR'] ?>
                         </li>
                             <?php if ($this->user->isAdmin()): ?>
-                                <a id="valueBTN" href="https://www.whois.com/whois/<?= $_SERVER['SERVER_ADDR'] ?>" class="value-btn" target="_blank" rel="noopener noreferrer" title="<?= t('Opens in a new window') ?>">
+                                <a id="valueBTN" href="https://www.whois.com/whois/<?= $_SERVER['SERVER_ADDR'] ?>" class="value-btn privacy-delete" target="_blank" rel="noopener noreferrer" title="<?= t('Opens in a new window') ?>">
                                     <i class="fa fa-external-link"></i> <?= t('Lookup IP') ?>
                                 </a>
                             <?php endif ?>
@@ -399,7 +414,7 @@
                     </span>
                     <span class="data-wrap">
                         <li class="server-config server-config-title"><?= t('Document Root') ?></li>
-                        <li class="server-value server-config-value border-bottom-thick value-path"><?= $_SERVER['DOCUMENT_ROOT'] ?></li>
+                        <li class="server-value server-config-value border-bottom-thick value-path privacy"><?= $_SERVER['DOCUMENT_ROOT'] ?></li>
                         <?php if (! is_writable($_SERVER['DOCUMENT_ROOT'])): ?>
                             <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
                         <?php else: ?>
@@ -443,7 +458,7 @@
                     </span>
                     <span class="data-wrap">
                         <li class="server-config server-config-title"><?= t('Absolute Path') ?></li>
-                        <li class="server-value server-config-value border-bottom-thick value-path"><?= $_SERVER['SCRIPT_FILENAME'] ?></li>
+                        <li class="server-value server-config-value border-bottom-thick value-path privacy"><?= $_SERVER['SCRIPT_FILENAME'] ?></li>
                     </span>
                     <span class="data-wrap">
                         <li class="server-config server-config-title" title="<?= t('Common Gateway Interface') ?>"><?= t('CGI Version') ?></li>
