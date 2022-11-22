@@ -10,6 +10,7 @@
     --pp-grey: #4D4D4D;
     --pp-white: #FFFFFF;
     --pp-green: #2EA02E;
+    --pp-green-dark: #055D20;
     --pp-orange: #FF6500;
     --border-radius: 3px;
     --button-blue-gradient: linear-gradient(to bottom, #7892c2 80%, #476e9e 100%);
@@ -21,25 +22,37 @@
     --tech-light-grey: #07060680;
 }
 
-.display-none, .d-none {
-    display: none !important;
+.pp-blue { color: var(--pp-blue); fill: var(--pp-blue); }
+.pp-blue-alt { color: var(--pp-blue-alt); fill: var(--pp-blue-alt); }
+.pp-red { color: var(--pp-red); fill: var(--pp-red); }
+.pp-red-alt { color: var(--pp-red-alt); fill: var(--pp-red-alt); }
+.pp-red-alt-2 { color: var(--pp-red-alt-2); fill: var(--pp-red-alt-2); }
+.pp-black { color: var(--pp-black); fill: var(--pp-black); }
+.pp-light-grey { color: var(--pp-light-grey); fill: var(--pp-light-grey); }
+.pp-grey { color: var(--pp-grey); fill: var(--pp-grey); }
+.pp-white { color: var(--pp-white); fill: var(--pp-white); }
+.pp-green { color: var(--pp-green); fill: var(--pp-green); }
+.pp-orange { color: var(--pp-orange); fill: var(--pp-orange); }
+
+div, a, details, summary, i, img, table, tr, .btn-uninstall, svg, .sidebar > ul li, figure, .privacy, .privacy-data {
+    transition: ease-in-out all .3s;
 }
 
-.text-center {
-    text-align: center;
-}
+a:hover { color: var(--pp-red-alt-2) !important; }
 
-.text-right {
-    text-align: right;
-}
+.display-none, .d-none { display: none !important; }
 
-.text-left {
-    text-align: left;
-}
+.font-weight-bold { font-weight: bold; }
 
-.font-weight-bold {
-    font-weight: bold;
-}
+.text-center { text-align: center; }
+
+.text-right { text-align: right; }
+
+.text-left { text-align: left; }
+
+.relative { position: relative; }
+
+.font-weight-bold { font-weight: bold; }
 
 .table-center {
     margin: auto;
@@ -421,13 +434,4 @@ margin-right: 8px;}
 
 .p-note code {
     font-size: .8rem !important;
-}
-
-td.privacy > span::before {
-  content: 'Data Hidden';
-  font-style: italic;
-}
-
-.privacy-data {
- filter: blur(4px);
 }
