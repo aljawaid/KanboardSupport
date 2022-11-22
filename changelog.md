@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v2.5
+
+### What's Changed
+
+_(most recent changes are listed on top):_
+- 5b45488 NEW: Add User Warning for Sharing Info & Hide Data
+- Add button to hide sensitive data
+- d707764 Change Wording `Technical Support` > `Technical Information`
+- 639f12f Change Menu Icon CSS Hack
+- 6cc9ea6 NEW: Add German Translations- thanks @RainerBielefeld
+- 6ab267a FIX:  Illegal string offset #2 - Remove User Status Field
+
+
 ## v2.0
 
 ### What's Changed
