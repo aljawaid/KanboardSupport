@@ -34,7 +34,7 @@
 .pp-green { color: var(--pp-green); fill: var(--pp-green); }
 .pp-orange { color: var(--pp-orange); fill: var(--pp-orange); }
 
-div, a, details, summary, i, img, table, tr, .btn-uninstall, svg, .sidebar > ul li, figure, .privacy, .privacy-data {
+div, a, details, summary, i, img, table, tr, .btn-uninstall, svg, figure, .privacy, .privacy-data {
     transition: ease-in-out all .3s;
 }
 
