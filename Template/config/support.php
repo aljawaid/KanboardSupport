@@ -27,7 +27,7 @@
                     </tr>
                     <tr class="support-table-row">
                         <td class="cell-title"><?= t('Your Role') ?></td>
-                        <td class="cell-value" colspan="3"><?= $this->user->getRoleName($user['role']) ?></td>
+                        <td class="cell-value" colspan="3"><?= $this->user->getRoleName() ?></td>
                     </tr>
                     <tr class="support-table-row">
                         <td class="cell-title"><?= t('Your IP Address') ?></td>
