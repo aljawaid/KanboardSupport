@@ -12,7 +12,6 @@
     --pp-green: #2EA02E;
     --pp-green-dark: #055D20;
     --pp-orange: #FF6500;
-    --border-radius-kanboard-support: 3px;
     --button-blue-gradient: linear-gradient(to bottom, #7892c2 80%, #476e9e 100%);
     --blue-border-gradient-match: #476E9E;
     --tech-bg-grey: #7E8181;
@@ -20,6 +19,8 @@
     --tech-bg-grey-border-match: #6C6E6E;
     --tech-bg-grey-border-bottom: #555555;
     --tech-light-grey: #07060680;
+    --border-radius-kanboard-support: 3px;
+    --transition-kanboard-support: ease-in-out all .3s;
 }
 
 .pp-blue { color: var(--pp-blue); fill: var(--pp-blue); }
@@ -34,8 +35,8 @@
 .pp-green { color: var(--pp-green); fill: var(--pp-green); }
 .pp-orange { color: var(--pp-orange); fill: var(--pp-orange); }
 
-div, a, details, summary, i, img, table, tr, .btn-uninstall, svg, figure, .privacy, .privacy-data {
-    transition: ease-in-out all .3s;
+a, details, summary, i, img, table, tr, .btn-uninstall, svg, figure, .privacy, .privacy-data {
+    transition: var(--transition-kanboard-support);
 }
 
 a:hover { color: var(--pp-red-alt-2) !important; }
