@@ -35,7 +35,7 @@
 .pp-green { color: var(--pp-green); fill: var(--pp-green); }
 .pp-orange { color: var(--pp-orange); fill: var(--pp-orange); }
 
-a, details, summary, i, img, table, tr, .btn-uninstall, svg, figure, .privacy, .privacy-data {
+.privacy, .privacy-data {
     transition: var(--transition-kanboard-support);
 }
 
