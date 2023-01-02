@@ -39,7 +39,7 @@ a, details, summary, i, img, table, tr, .btn-uninstall, svg, figure, .privacy, .
     transition: var(--transition-kanboard-support);
 }
 
-a:hover { color: var(--pp-red-alt-2) !important; }
+/*a:hover { color: var(--pp-red-alt-2) !important; }*/
 
 .display-none, .d-none { display: none !important; }
 
