@@ -155,7 +155,7 @@ table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > th {
 
 #valueBTN {
     text-decoration: none !important;
-    padding: 0px 3px 1px 3px;
+    padding: 0 3px 1px 3px;
     font-size: .7em;
     font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-left: 10px;
@@ -407,7 +407,7 @@ table.support-table.user-table tr td:first-child::before {
 
 .p-type {
     border: 1px solid var(--tech-bg-grey-border-match);
-    padding: 0px 3px;
+    padding: 0 3px;
     margin-right: 2px;
 }
 
@@ -455,7 +455,7 @@ margin-right: 8px;}
 
 .data-btn {
     text-decoration: none !important;
-    padding: 0px 3px 1px 3px;
+    padding: 0 3px 1px 3px;
     font-size: 1em;
     font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-top: 10px;
