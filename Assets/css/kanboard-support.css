@@ -151,7 +151,7 @@ table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > th {
     padding-top: 5px;
 }
 
-.value-btn {}
+/*.value-btn {}*/
 
 #valueBTN {
     text-decoration: none !important;
@@ -188,7 +188,7 @@ table > thead > tr > th, table > tbody > tr > td, table > tbody > tr > th {
     padding-top: 5px;
 }
 
-.value-required {}
+/*.value-required {}*/
 
 .no-border-left {
     border-left: 0 !important;
@@ -379,15 +379,15 @@ table.support-table.user-table tr td:first-child::before {
     position: relative;
 }
 
-.server-info {}
+/*.server-info {}*/
 
 .server-col {
     display: block;
 }
 
-.server-config {}
+/*.server-config {}*/
 
-.server-value {}
+/*.server-value {}*/
 
 .server-list {
     margin-left: 10px;
@@ -411,7 +411,7 @@ table.support-table.user-table tr td:first-child::before {
     margin-right: 2px;
 }
 
-.p-check {}
+/*.p-check {}*/
 
 .p-dir {
     font-family: Arial;
