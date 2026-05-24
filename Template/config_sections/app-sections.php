@@ -215,7 +215,7 @@
             <?php else: ?>
                 <span class="pass-tick" title="<?= t('This directory is writeable by the web server user') ?>">&#10004;</span>
             <?php endif ?>
-            <?php if (CACHE_DRIVER == 'memory'): ?>
+            <?php if (!defined('CACHE_DRIVER') or (CACHE_DRIVER == 'memory')): ?>
                 <span class="p-note"><i><?= e('%s as Cache Driver is set to %s', '<strong>' . t('Not required') . '</strong>', '<code>memory</code>') ?></i></span>
             <?php else: ?>
                 <?php if ($this->user->isAdmin()): ?>
