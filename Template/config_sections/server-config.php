@@ -70,10 +70,10 @@
                         <?= $this->helper->supportHelper->maskPath($_SERVER['DOCUMENT_ROOT']) ?>
                     </li>
                 <?php endif ?>
-                <?php if (!is_writable($_SERVER['DOCUMENT_ROOT'])): ?>
-                    <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
+                <?php if (is_writable($_SERVER['DOCUMENT_ROOT'])): ?>
+                    <span class="fail-x" title="<?= e('%s. %s', t('This directory is writeable by the web server user'), t('This is not the recommended setting')) ?>">&#10008;</span>
                 <?php else: ?>
-                    <span class="pass-tick" title="<?= t('This directory is writeable by the web server user') ?>">&#10004;</span>
+                    <span class="pass-tick" title="<?= e('%s. %s', t('This directory is not writeable by the web server user'), t('This is the default and recommended setting')) ?>">&#10004;</span>
                 <?php endif ?>
                 <?php if ($this->user->isAdmin()): ?>
                     <div id="pCheck" class="p-check">
