@@ -44,12 +44,12 @@
                 <li class="app-info-value border-bottom-thick" title="<?= t('Plugins cannot be installed. This is also set by default for security reasons.') ?>">
                     <?= t('Disabled') ?>
                 </li>
-                <span class="fail-x" title="<?= t('Plugins cannot be installed. This is also set by default for security reasons.') ?>">&#10008;</span>
+                <span class="pass-tick" title="<?= t('Plugins cannot be installed. This is also set by default for security reasons.') ?>">&#10004;</span>
             <?php else: ?>
                 <li class="app-info-value border-bottom-thick" title="<?= t('Plugins can be automatically installed through the Plugins Directory') ?>">
                     <?= t('Enabled') ?>
                 </li>
-                <span class="pass-tick" title="<?= t('Plugins can be automatically installed through the Plugins Directory') ?>">&#10004;</span>
+                <span class="fail-x" title="<?= t('Plugins can be automatically installed through the Plugins Directory') ?>">&#10008;</span>
             <?php endif ?>
         </span>
         <span class="data-wrap">
@@ -63,10 +63,18 @@
                     <?= $this->helper->supportHelper->maskPath(PLUGINS_DIR) ?>
                 </li>
             <?php endif ?>
-            <?php if (!is_writable(PLUGINS_DIR)): ?>
-                <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
+            <?php if (is_writable(PLUGINS_DIR) === (bool) PLUGIN_INSTALLER): ?>
+                <?php if (is_writable(PLUGINS_DIR)): ?>
+                    <span class="pass-tick" title="<?= t('This directory is writeable by the web server user') ?>">&#10004;</span>
+                <?php else: ?>
+                    <span class="pass-tick" title="<?= t('This directory is not writeable by the web server user') ?>">&#10004;</span>
+                <?php endif ?>
             <?php else: ?>
-                <span class="pass-tick" title="<?= t('This directory is writeable by the web server user') ?>">&#10004;</span>
+                <?php if (is_writable(PLUGINS_DIR)): ?>
+                    <span class="fail-x" title="<?= t('This directory is writeable by the web server user') ?>">&#10008;</span>
+                <?php else: ?>
+                    <span class="fail-x" title="<?= t('This directory is not writeable by the web server user') ?>">&#10008;</span>
+                <?php endif ?>
             <?php endif ?>
             <?php if ($this->user->isAdmin()): ?>
                 <div id="pCheck" class="p-check">
