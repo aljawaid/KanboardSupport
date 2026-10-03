@@ -401,6 +401,8 @@
         <?php endif ?>
     </span>
 </div>
+<?php // Plugin-dependent extensions only fail when Mailmagik is installed. ?>
+<?php $mailmagikInstalled = file_exists(PLUGINS_DIR . DIRECTORY_SEPARATOR . 'Mailmagik') ?>
 <!-- imap -->
 <div class="tile-wrapper tile-optional-hover">
     <div class="tile-hover-plugin">
@@ -416,15 +418,17 @@
             <span class="value-version"><?= t('Not Detected') ?></span>
         <?php endif ?>
     </div>
-    <?php if (!file_exists('plugins/Mailmagik')): ?>
+    <?php if (!$mailmagikInstalled): ?>
         <div class="tile-optional" title=""><?= t('Optional') ?></div>
     <?php endif ?>
     <div class="tile-icon" title="<?= t('PHP Extension') ?>"><?= $this->helper->supportHelper->embedSVGIcon('php-logo-icon') ?></div>
     <span class="tile-check">
         <?php if (extension_loaded('imap')): ?>
             <span class="tile-pass" title="<?= t('Pass') ?>">&#10004;</span>
+        <?php elseif ($mailmagikInstalled): ?>
+            <span class="tile-fail-x" title="<?= t('Required Extension') ?>">&#10008;</span>
         <?php else: ?>
-            <span class="tile-fail-x" title="<?= t('Optional Extension') ?>">&#10008;</span>
+            <span class="tile-pass" title="<?= t('Not required') ?>">&#10004;</span>
         <?php endif ?>
     </span>
 </div>
@@ -443,15 +447,17 @@
             <span class="value-version"><?= t('Not Detected') ?></span>
         <?php endif ?>
     </div>
-    <?php if (!file_exists('plugins/Mailmagik')): ?>
+    <?php if (!$mailmagikInstalled): ?>
         <div class="tile-optional" title=""><?= t('Optional') ?></div>
     <?php endif ?>
     <div class="tile-icon" title="<?= t('PHP Extension') ?>"><?= $this->helper->supportHelper->embedSVGIcon('php-logo-icon') ?></div>
     <span class="tile-check">
         <?php if (extension_loaded('fileinfo')): ?>
             <span class="tile-pass" title="<?= t('Pass') ?>">&#10004;</span>
+        <?php elseif ($mailmagikInstalled): ?>
+            <span class="tile-fail-x" title="<?= t('Required Extension') ?>">&#10008;</span>
         <?php else: ?>
-            <span class="tile-fail-x" title="<?= t('Optional Extension') ?>">&#10008;</span>
+            <span class="tile-pass" title="<?= t('Not required') ?>">&#10004;</span>
         <?php endif ?>
     </span>
 </div>
@@ -470,15 +476,17 @@
             <span class="value-version"><?= t('Not Detected') ?></span>
         <?php endif ?>
     </div>
-    <?php if (!file_exists('plugins/Mailmagik')): ?>
+    <?php if (!$mailmagikInstalled): ?>
         <div class="tile-optional" title=""><?= t('Optional') ?></div>
     <?php endif ?>
     <div class="tile-icon" title="<?= t('PHP Extension') ?>"><?= $this->helper->supportHelper->embedSVGIcon('php-logo-icon') ?></div>
     <span class="tile-check">
         <?php if (extension_loaded('iconv')): ?>
             <span class="tile-pass" title="<?= t('Pass') ?>">&#10004;</span>
+        <?php elseif ($mailmagikInstalled): ?>
+            <span class="tile-fail-x" title="<?= t('Required Extension') ?>">&#10008;</span>
         <?php else: ?>
-            <span class="tile-fail-x" title="<?= t('Optional Extension') ?>">&#10008;</span>
+            <span class="tile-pass" title="<?= t('Not required') ?>">&#10004;</span>
         <?php endif ?>
     </span>
 </div>

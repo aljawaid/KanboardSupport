@@ -1,5 +1,13 @@
 # Changelog
 
+## v4.5.1
+
+_(most recent changes are listed on top):_
+- FIX: Detect secure read-only application and plugin directories correctly
+- FIX: Mark the disabled plugin installer as the recommended production setting
+- FIX: Require Mailmagik PHP extensions only when the Mailmagik plugin is installed
+
+
 ## v4.5
 
 _(most recent changes are listed on top):_
