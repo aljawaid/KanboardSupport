@@ -357,26 +357,4 @@ class SupportHelper extends Base
         clearstatcache();
     }
 
-    /**
-     * Get Latest Kanboard Version from GitHub
-     *
-     * @return  string
-     * @author  yPhil   https://stackoverflow.com/a/18833551
-     */
-    public function getLatestVersion()
-    {
-    $current_commit_minus1 = $commits[1]->sha;
-    $ref_commit = "57b75c0f8aefa5ce87c1270265cace18a2347594";
-
-    if (!strcmp($current_commit_minus1, $ref_commit))
-        $moved = true;
-    else
-        $moved = false;
-    }
-        $githubRelease =
-
-        return $githubRelease
-
-        $commits = json_decode(file_get_contents("https://api.github.com/repos/user_name/repository_name/commits"));
-
 }
