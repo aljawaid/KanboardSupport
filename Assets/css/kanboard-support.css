@@ -397,14 +397,14 @@ ul.apache-modules li svg {
 }
 
 .tile-name > code.ext-name {
-    color: #000;
-    background-color: rgba(27, 31, 35, .12);
+    color: #000000;
+    background-color: rgb(27, 31, 35, .12);
     box-shadow: 0 0 1px 1px var(--pp-grey);
 }
 
 .tile-name code, .server-config-value code {
     border-radius: var(--border-radius-kanboard-support);
-    background-color: rgba(27, 31, 35, .22);
+    background-color: rgb(27, 31, 35, .22);
     font-size: .9rem !important;
     font-family: monospace !important;
     letter-spacing: .08rem;
@@ -629,7 +629,7 @@ details.accordion-section.app-config > summary.accordion-title,  details.accordi
     padding: 3px 8px 4px 5px;
     border: 1px outset var(--pp-black);
     border-radius: 0 15px 15px 0;
-    background: rgba(0, 0, 0, .3);
+    background: rgb(0, 0, 0, .3);
 }
 
 #WebhookExamples details > summary, details.accordion-section.mysql-ssl > summary, details.accordion-section.app-config > summary, details.accordion-section.apache-config > summary, details.accordion-section.htaccess-config > summary {
