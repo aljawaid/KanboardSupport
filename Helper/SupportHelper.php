@@ -323,7 +323,6 @@ class SupportHelper extends Base
 
             // Decrease our line counter
             $lines -= substr_count($chunk, "\n");
-
         }
 
         // While we have too many lines
@@ -356,5 +355,4 @@ class SupportHelper extends Base
 
         clearstatcache();
     }
-
 }
