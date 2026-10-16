@@ -1,3 +1,4 @@
+<!-- Sensitive-action contracts are covered by tests/SecurityBoundaryTest.php. -->
 <h2 class="">
     <i class="fa fa-cog"></i> <?= t('Application Information') ?>
 </h2>
@@ -27,22 +28,23 @@
             </p>
             <div class="config-btns">
                 <?php if (file_exists(ROOT_DIR . DIRECTORY_SEPARATOR . 'config.php')): ?>
-                    <button href="<?= $this->url->href('TechnicalSupportController', 'showCurrentRawConfigModal', array(
+                    <button type="button" href="<?= $this->url->href('TechnicalSupportController', 'showCurrentRawConfigModal', array(
                         'plugin' => 'KanboardSupport'), false, '', false) ?>" class="btn config-btn config-btn-green js-modal-confirm" title="<?= t('The settings in this file apply to the current application environment') ?>">
                         <?= $this->helper->supportHelper->embedSVGIcon('raw-icon') ?> <?= t('Current Raw Config File') ?>
                     </button>
                 <?php else: ?>
-                    <button href="<?= $this->url->href('TechnicalSupportController', 'showCurrentRawConfigModal', array(
+                    <button type="button" href="<?= $this->url->href('TechnicalSupportController', 'showCurrentRawConfigModal', array(
                         'plugin' => 'KanboardSupport'), false, '', false) ?>" class="btn config-btn config-btn-red js-modal-confirm" title="<?= t('An active configuration file has not been detected. Make sure the filename is correct.') ?>" disabled>
                         <?= $this->helper->supportHelper->embedSVGIcon('raw-icon') ?> <?= t('Current Raw Config File') ?>
                     </button>
                 <?php endif ?>
-                <button href="<?= $this->url->href('TechnicalSupportController', 'showDefaultRawConfigModal', array(
-                    'plugin' => 'KanboardSupport'), false, '', false) ?>" class="btn config-btn config-btn-red js-modal-confirm" title="<?= t('This file is for reference only') ?>">
+                <button type="button" href="<?= $this->url->href('TechnicalSupportController', 'showDefaultRawConfigModal', array(
+                    'plugin' => 'KanboardSupport'), false, '', false) ?>" class="btn config-btn config-btn-blue js-modal-confirm" title="<?= t('This file is for reference only') ?>">
                     <?= $this->helper->supportHelper->embedSVGIcon('raw-icon') ?> <?= t('Default Raw Config File') ?>
                 </button>
                 <?php if (extension_loaded('zip')): ?>
-                    <form method="post" action="<?= $this->url->href('TechnicalSupportController', 'backupConfigFiles', array('plugin' => 'KanboardSupport'), true, '', false) ?>">
+                    <form method="post" action="<?= $this->url->href('TechnicalSupportController', 'backupConfigFiles', array('plugin' => 'KanboardSupport'), false, '', false) ?>">
+                        <?= $this->form->csrf() ?>
                         <button type="submit" class="btn config-download-btn">
                             <?= $this->helper->supportHelper->embedSVGIcon('zip-icon') ?> <?= t('Download Config Files') ?>
                         </button>

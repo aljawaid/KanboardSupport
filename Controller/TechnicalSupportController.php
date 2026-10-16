@@ -3,6 +3,8 @@
 namespace Kanboard\Plugin\KanboardSupport\Controller;
 
 use Kanboard\Controller\BaseController;
+use Kanboard\Core\Controller\AccessForbiddenException;
+use RuntimeException;
 use ZipArchive;
 
 /**
@@ -11,8 +13,10 @@ use ZipArchive;
  * Class TechnicalSupportController
  * @package  Kanboard/Controller
  * @author   aljawaid
+ *
+ * Security boundaries are covered by tests/SecurityBoundaryTest.php.
  */
-class TechnicalSupportController extends \Kanboard\Controller\ConfigController
+class TechnicalSupportController extends BaseController
 {
     /**
      * Display the Support Page
@@ -21,6 +25,7 @@ class TechnicalSupportController extends \Kanboard\Controller\ConfigController
      */
     public function show()
     {
+        $this->assertAdmin();
         $this->response->html($this->helper->layout->config('kanboardSupport:config/support', array(
             'db_size' => $this->configModel->getDatabaseSize(),
             'db_version' => $this->db->getDriver()->getDatabaseVersion(),
@@ -36,6 +41,7 @@ class TechnicalSupportController extends \Kanboard\Controller\ConfigController
      */
     public function showWebhookInformation()
     {
+        $this->assertAdmin();
         $this->response->html($this->helper->layout->config('kanboardSupport:config/webhook_information', array(
             'title' => e('Webhooks %s Information', ' &#10562; '),
         )));
@@ -50,6 +56,7 @@ class TechnicalSupportController extends \Kanboard\Controller\ConfigController
      */
     public function showCurrentRawConfigModal()
     {
+        $this->assertAdmin();
         $this->response->html($this->template->render('kanboardSupport:modals/current-raw-config', array(
             'title' => t('Current Raw Configuration File'),
         )));
@@ -64,6 +71,7 @@ class TechnicalSupportController extends \Kanboard\Controller\ConfigController
      */
     public function showDefaultRawConfigModal()
     {
+        $this->assertAdmin();
         $this->response->html($this->template->render('kanboardSupport:modals/default-raw-config', array(
             'title' => t('Default Raw Configuration File'),
         )));
@@ -78,6 +86,7 @@ class TechnicalSupportController extends \Kanboard\Controller\ConfigController
      */
     public function showDebugLogModal()
     {
+        $this->assertAdmin();
         $this->response->html($this->template->render('kanboardSupport:modals/debug-log', array(
             'title' => t('Debug Log'),
         )));
@@ -94,33 +103,12 @@ class TechnicalSupportController extends \Kanboard\Controller\ConfigController
      */
     public function backupConfigFiles()
     {
-        $files = array(ROOT_DIR . DIRECTORY_SEPARATOR . 'config.php', ROOT_DIR . DIRECTORY_SEPARATOR . 'config.default.php');
-
-        // Create new zip object
-        $zip = new ZipArchive();
-
-        // Create a temp file and open it
-        $tmp_file = tempnam('.', '');
-        $zip->open($tmp_file, ZipArchive::CREATE);
-
-        // Loop through each file
-        foreach ($files as $file) {
-            // Download file
-            $download_file = file_get_contents($file);
-
-            // Add it to the zip
-            $zip->addFromString(basename($file), $download_file);
-        }
-
-        // Close zip
-        $zip->close();
-
-        // Send the file to the browser as a download
+        $this->validateAdminPostRequest();
         $filename = 'KB_v' . APP_VERSION . '_Config_Backup-' . date('d-m-Y\THi') . '.zip';
-        header('Content-disposition: attachment; filename=' . $filename . '');
-        header('Content-type: application/zip');
-        readfile($tmp_file);
-        unlink($tmp_file);
+        $this->downloadZipArchive(
+            array(ROOT_DIR . DIRECTORY_SEPARATOR . 'config.php', ROOT_DIR . DIRECTORY_SEPARATOR . 'config.default.php'),
+            $filename
+        );
     }
 
     /**
@@ -134,33 +122,9 @@ class TechnicalSupportController extends \Kanboard\Controller\ConfigController
      */
     public function downloadDebugFile()
     {
-        $files = array(LOG_FILE);
-
-        // Create new zip object
-        $zip = new ZipArchive();
-
-        // Create a temp file and open it
-        $tmp_file = tempnam('.', '');
-        $zip->open($tmp_file, ZipArchive::CREATE);
-
-        // Loop through each file
-        foreach ($files as $file) {
-            // Download file
-            $download_file = file_get_contents($file);
-
-            // Add it to the zip
-            $zip->addFromString(basename($file), $download_file);
-        }
-
-        // Close zip
-        $zip->close();
-
-        // Send the file to the browser as a download
+        $this->validateAdminPostRequest();
         $filename = 'KB_v' . APP_VERSION . '_Debug_Backup-' . date('d-m-Y\THi') . '.zip';
-        header('Content-disposition: attachment; filename=' . $filename . '');
-        header('Content-type: application/zip');
-        readfile($tmp_file);
-        unlink($tmp_file);
+        $this->downloadZipArchive(array(LOG_FILE), $filename);
     }
 
     /**
@@ -172,18 +136,16 @@ class TechnicalSupportController extends \Kanboard\Controller\ConfigController
      */
     public function downloadRawDebugFile()
     {
-        if (file_exists(LOG_FILE)) {
-            // Send the file to the browser as a download
-            $filename = 'KB_v' . APP_VERSION . '-' . date('d-m-Y\THi') . '-debug.log';
+        $this->validateAdminPostRequest();
 
-            header('Content-disposition: attachment; filename=' . $filename . '');
-            header('Content-type: application/octet-stream');
-            flush();
-            readfile(LOG_FILE);
-        } else {
+        if (!is_file(LOG_FILE) || !is_readable(LOG_FILE)) {
             $this->flash->failure(t('Unable to download the log file. Check that the file exists.'));
-            $this->response->redirect($this->helper->url->to('TechnicalSupportController', 'show', array('plugin' => 'KanboardSupport')));
+            $this->redirectToSupport();
+            return;
         }
+
+        $filename = 'KB_v' . APP_VERSION . '-' . date('d-m-Y\THi') . '-debug.log';
+        $this->downloadFileSnapshot(LOG_FILE, $filename, 'text/plain; charset=utf-8');
     }
 
     /**
@@ -194,16 +156,184 @@ class TechnicalSupportController extends \Kanboard\Controller\ConfigController
      */
     public function deleteDebugLog()
     {
-        if (is_writable(dirname(LOG_FILE))) {
-            if (unlink(LOG_FILE)) {
-                $this->flash->success(t('Debug Log Deleted Successfully'));
-            } else {
-                $this->flash->failure(t('Unable to Delete Debug Log'));
-            }
+        $this->validateAdminPostRequest();
+
+        if (is_file(LOG_FILE) && is_writable(dirname(LOG_FILE)) && unlink(LOG_FILE)) {
+            $this->flash->success(t('Debug Log Deleted Successfully'));
         } else {
-            $this->flash->failure(t('Unable to delete the file. Check the folder permissions.'));
+            $this->flash->failure(t('Unable to Delete Debug Log'));
         }
 
-        $this->response->redirect($this->helper->url->to('TechnicalSupportController', 'show', array('plugin' => 'KanboardSupport')));
+        $this->redirectToSupport();
+    }
+
+    /**
+     * Enforce the defence-in-depth boundary for sensitive POST actions.
+     *
+     * @return void
+     */
+    private function validateAdminPostRequest()
+    {
+        $this->assertAdmin();
+
+        if (!$this->request->isPost()) {
+            throw new AccessForbiddenException();
+        }
+
+        $this->checkCSRFForm();
+    }
+
+    /**
+     * Reject direct controller calls that bypass the application access map.
+     *
+     * @return void
+     */
+    private function assertAdmin()
+    {
+        if (!$this->userSession->isAdmin()) {
+            throw new AccessForbiddenException();
+        }
+    }
+
+    /**
+     * Build and stream a ZIP archive from readable regular files.
+     *
+     * @param  array  $files
+     * @param  string $filename
+     * @return void
+     */
+    private function downloadZipArchive(array $files, $filename)
+    {
+        if (!class_exists(ZipArchive::class)) {
+            $this->failDownload();
+            return;
+        }
+
+        $zip = new ZipArchive();
+        $temporaryFile = tempnam(sys_get_temp_dir(), 'kanboard-support-');
+
+        if ($temporaryFile === false) {
+            $this->failDownload();
+            return;
+        }
+
+        $archiveOpen = false;
+
+        try {
+            if ($zip->open($temporaryFile, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
+                throw new RuntimeException('Unable to create ZIP archive.');
+            }
+            $archiveOpen = true;
+
+            foreach ($files as $file) {
+                if (!is_file($file) || !is_readable($file) || !$zip->addFile($file, basename($file))) {
+                    throw new RuntimeException('Unable to add a requested file to the ZIP archive.');
+                }
+            }
+
+            $archiveClosed = $zip->close();
+            $archiveOpen = false;
+
+            if (!$archiveClosed) {
+                throw new RuntimeException('Unable to finish ZIP archive.');
+            }
+
+            $this->sendFileDownload($temporaryFile, $filename, 'application/zip');
+        } catch (RuntimeException $exception) {
+            if ($archiveOpen) {
+                $zip->close();
+            }
+            $this->failDownload();
+        } finally {
+            if (is_file($temporaryFile)) {
+                unlink($temporaryFile);
+            }
+        }
+    }
+
+    /**
+     * Copy a live file to a fixed snapshot before calculating download headers.
+     *
+     * @param  string $sourcePath
+     * @param  string $filename
+     * @param  string $contentType
+     * @return void
+     */
+    private function downloadFileSnapshot($sourcePath, $filename, $contentType)
+    {
+        $temporaryFile = tempnam(sys_get_temp_dir(), 'kanboard-support-');
+
+        if ($temporaryFile === false) {
+            $this->failDownload();
+            return;
+        }
+
+        try {
+            if (!is_file($sourcePath) || !is_readable($sourcePath) || !copy($sourcePath, $temporaryFile)) {
+                throw new RuntimeException('Unable to create a file snapshot.');
+            }
+
+            $this->sendFileDownload($temporaryFile, $filename, $contentType);
+        } catch (RuntimeException $exception) {
+            $this->failDownload();
+        } finally {
+            if (is_file($temporaryFile)) {
+                unlink($temporaryFile);
+            }
+        }
+    }
+
+    /**
+     * Stream a file with private, non-sniffable download headers.
+     *
+     * @param  string $path
+     * @param  string $filename
+     * @param  string $contentType
+     * @return void
+     */
+    private function sendFileDownload($path, $filename, $contentType)
+    {
+        $filesize = filesize($path);
+
+        if ($filesize === false) {
+            $this->failDownload();
+            return;
+        }
+
+        $this->response
+            ->withoutCache()
+            ->withSecurityHeaders()
+            ->withFileDownload($filename)
+            ->withContentType($contentType)
+            ->withHeader('Cache-Control', 'no-store, private')
+            ->withHeader('Content-Length', (string) $filesize)
+            ->send();
+
+        readfile($path);
+    }
+
+    /**
+     * Report a download preparation failure without disclosing server paths.
+     *
+     * @return void
+     */
+    private function failDownload()
+    {
+        $this->flash->failure(
+            t('Unable to create the requested download. Check the file and temporary folder permissions.')
+        );
+        $this->redirectToSupport();
+    }
+
+    /**
+     * Return to the masked support overview.
+     *
+     * @return void
+     */
+    private function redirectToSupport()
+    {
+        $this->response->redirect(
+            $this->helper->url->to('TechnicalSupportController', 'show', array('plugin' => 'KanboardSupport'))
+        );
     }
 }

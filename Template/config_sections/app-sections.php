@@ -1,3 +1,4 @@
+<!-- Access and diagnostic contracts are covered by tests/SecurityBoundaryTest.php and tests/DiagnosticsCompatibilityTest.php. -->
 <details class="accordion-section app-config">
     <summary class="accordion-title">
         <?= t('General Configuration') ?>
@@ -77,7 +78,7 @@
                 <?php endif ?>
             <?php endif ?>
             <?php if ($this->user->isAdmin()): ?>
-                <div id="pCheck" class="p-check">
+                <div class="p-check">
                     <?php if (!is_writable(PLUGINS_DIR)): ?>
                         <span class="p-dir" title="<?= t('Directory Permissions') ?>">
                             <?= $this->helper->supportHelper->getPermissions(PLUGINS_DIR) ?>
@@ -140,7 +141,7 @@
                 <span class="pass-tick" title="<?= t('This directory is writeable by the web server user') ?>">&#10004;</span>
             <?php endif ?>
             <?php if ($this->user->isAdmin()): ?>
-                <div id="pCheck" class="p-check">
+                <div class="p-check">
                     <?php if (!is_writable(DATA_DIR)): ?>
                         <span class="p-dir" title="<?= t('Directory Permissions') ?>">
                             <?= $this->helper->supportHelper->getPermissions(DATA_DIR) ?>
@@ -182,7 +183,7 @@
                 <span class="pass-tick" title="<?= t('This directory is writeable by the web server user') ?>">&#10004;</span>
             <?php endif ?>
             <?php if ($this->user->isAdmin()): ?>
-                <div id="pCheck" class="p-check">
+                <div class="p-check">
                     <?php if (!is_writable(FILES_DIR)): ?>
                         <span class="p-dir" title="<?= t('Directory Permissions') ?>">
                             <?= $this->helper->supportHelper->getPermissions(FILES_DIR) ?>
@@ -227,7 +228,7 @@
                 <span class="p-note"><i><?= e('%s as Cache Driver is set to %s', '<strong>' . t('Not required') . '</strong>', '<code>memory</code>') ?></i></span>
             <?php else: ?>
                 <?php if ($this->user->isAdmin()): ?>
-                    <div id="pCheck" class="p-check">
+                    <div class="p-check">
                         <?php if (!is_writable(CACHE_DIR)): ?>
                             <span class="p-dir" title="<?= t('Directory Permissions') ?>">
                                 <?= $this->helper->supportHelper->getPermissions(CACHE_DIR) ?>
@@ -285,36 +286,39 @@
         <span class="data-wrap mt-0">
             <li class="app-info-title"><?= t('Session Duration') ?></li>
             <li class="app-info-value value-version border-bottom-thick">
-                <?= SESSION_DURATION ?> <small><i><?= t('Until browser is closed') ?></i></small>
+                <?= (int) SESSION_DURATION ?>
+                <small><i><?= (int) SESSION_DURATION === 0 ? t('Until browser is closed') : t('minutes') ?></i></small>
             </li>
         </span>
         <span class="data-wrap mt-0 debug-wrapper">
             <li class="app-info-title"><?= t('Debug Mode') ?></li>
-            <?php if (DEBUG == 'true'): ?>
+            <?php if ((bool) DEBUG): ?>
                 <li class="app-info-value border-bottom-thick" title="<?= t('This setting will affect performance and should only be enabled for troubleshooting purposes') ?>">
                     <?= t('Enabled') ?>
                 </li>
                 <span class="fail-x" title="<?= t('This setting will affect performance and should only be enabled for troubleshooting purposes') ?>">&#10008;</span>
-                <div class="debug-btns">
-                    <button href="<?= $this->url->href('TechnicalSupportController', 'showDebugLogModal', array(
-                        'plugin' => 'KanboardSupport'), false, '', false) ?>" class="btn js-modal-confirm config-download-btn" title="<?= t('View the last few entries of the log file') ?>">
-                        <?= $this->helper->supportHelper->embedSVGIcon('log-icon-red') ?> <?= t('View Log') ?>
-                    </button>
-                    <?php if ($this->user->isAdmin()): ?>
+                <?php if ($this->user->isAdmin()): ?>
+                    <div class="debug-btns">
+                        <button type="button" href="<?= $this->url->href('TechnicalSupportController', 'showDebugLogModal', array(
+                            'plugin' => 'KanboardSupport'), false, '', false) ?>" class="btn js-modal-confirm config-download-btn" title="<?= t('View the last few entries of the log file') ?>">
+                            <?= $this->helper->supportHelper->embedSVGIcon('log-icon-red') ?> <?= t('View Log') ?>
+                        </button>
                         <div class="btn-group" role="group">
                             <span class=""><?= t('Download Log') ?></span>
                             <?php if (extension_loaded('zip')): ?>
-                                <form method="post" action="<?= $this->url->href('TechnicalSupportController', 'downloadDebugFile', array('plugin' => 'KanboardSupport'), true, '', false) ?>">
+                                <form method="post" action="<?= $this->url->href('TechnicalSupportController', 'downloadDebugFile', array('plugin' => 'KanboardSupport'), false, '', false) ?>">
+                                    <?= $this->form->csrf() ?>
                                     <button type="submit" class="btn config-download-btn debug-download-btn" title="<?= t('Download Compressed Log File') ?>">
                                         <?= $this->helper->supportHelper->embedSVGIcon('zip-icon') ?>
                                     </button>
                                 </form>
                             <?php else: ?>
-                                <button type="submit" class="btn config-download-btn debug-download-btn" title="<?= t('Download Log File') ?>">
-                                    <?= $this->helper->supportHelper->embedSVGIcon('log-icon-green') ?>
+                                <button type="button" class="btn config-download-btn debug-download-btn" title="<?= t('ZIP extension is required for compressed downloads') ?>" disabled>
+                                    <?= $this->helper->supportHelper->embedSVGIcon('zip-icon') ?>
                                 </button>
                             <?php endif ?>
-                            <form method="post" action="<?= $this->url->href('TechnicalSupportController', 'downloadRawDebugFile', array('plugin' => 'KanboardSupport'), true, '', false) ?>">
+                            <form method="post" action="<?= $this->url->href('TechnicalSupportController', 'downloadRawDebugFile', array('plugin' => 'KanboardSupport'), false, '', false) ?>">
+                                <?= $this->form->csrf() ?>
                                 <button type="submit" class="btn config-download-btn debug-raw-download-btn" title="<?= t('Download Log File') ?>">
                                     <?= $this->helper->supportHelper->embedSVGIcon('log-icon-green') ?>
                                 </button>
@@ -323,22 +327,23 @@
                                 <?= $this->helper->supportHelper->getLogFileSize() ?>
                             </span>
                         </div>
-                        <form class="delete-log" method="post" action="<?= $this->url->href('TechnicalSupportController', 'deleteDebugLog', array('plugin' => 'KanboardSupport'), true, '', false) ?>">
+                        <form class="delete-log" method="post" action="<?= $this->url->href('TechnicalSupportController', 'deleteDebugLog', array('plugin' => 'KanboardSupport'), false, '', false) ?>" data-confirm-message="<?= $this->text->e(t('Delete the debug log file?')) ?>">
+                            <?= $this->form->csrf() ?>
                             <button type="submit" class="btn config-download-btn config-btn-red" title="<?= t('Delete the log file') ?>">
                                 <i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> <?= t('Delete Log') ?>
                             </button>
                             <p class="form-help"><?= t('Once deleted, the file will be immediately recreated.') ?></p>
                         </form>
-                    <?php endif ?>
-                </div>
+                    </div>
+                <?php endif ?>
             <?php else: ?>
                 <li class="app-info-value border-bottom-thick" title="<?= t('This is the default and recommended setting') ?>">
                     <?= t('Not Enabled') ?>
                 </li>
                 <span class="pass-tick" title="<?= t('This is the default and recommended setting') ?>">&#10004;</span>
-                <?php if (file_exists(LOG_FILE)): ?>
+                <?php if (file_exists(LOG_FILE) && $this->user->isAdmin()): ?>
                     <div class="debug-btns">
-                        <button href="<?= $this->url->href('TechnicalSupportController', 'showDebugLogModal', array(
+                        <button type="button" href="<?= $this->url->href('TechnicalSupportController', 'showDebugLogModal', array(
                             'plugin' => 'KanboardSupport'), false, '', false) ?>" class="btn js-modal-confirm config-download-btn" title="<?= t('View the last few entries of the log file') ?>">
                             <?= $this->helper->supportHelper->embedSVGIcon('log-icon-red') ?> <?= t('View Log') ?>
                         </button>
@@ -359,12 +364,12 @@
                 <li class="app-info-value border-bottom-thick" title="<?= t('This is the default setting. Change the value to \'false\' if your server is using self-signed security certificates.') ?>">
                     <?= t('Not Allowed') ?>
                 </li>
-                <span class="fail-x" title="<?= t('This is the default setting. Change the value to \'false\' if your server is using self-signed security certificates.') ?>">&#10008;</span>
+                <span class="pass-tick" title="<?= t('This is the default setting. Change the value to \'false\' if your server is using self-signed security certificates.') ?>">&#10004;</span>
             <?php else: ?>
                 <li class="app-info-value border-bottom-thick" title="<?= t('Correctly configured self-signed security certificates can be used') ?>">
                     <?= t('Allowed') ?>
                 </li>
-                <span class="pass-tick" title="<?= t('Correctly configured self-signed security certificates can be used') ?>">&#10004;</span>
+                <span class="fail-x" title="<?= t('Correctly configured self-signed security certificates can be used') ?>">&#10008;</span>
             <?php endif ?>
         </span>
         <span class="data-wrap">

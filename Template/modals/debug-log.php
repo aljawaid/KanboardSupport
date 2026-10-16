@@ -44,6 +44,6 @@
     </div>
     <p class="debug-entries-text"><?= t('Displaying the most recent entries (50 maximum) from the log file.') ?></p>
     <div class="modal-contents panel">
-        <pre class=""><?= $this->helper->supportHelper->displayDebugFile() ?></pre>
+        <pre class=""><?= $this->text->e($this->helper->supportHelper->displayDebugFile()) ?></pre>
     </div>
 </div>

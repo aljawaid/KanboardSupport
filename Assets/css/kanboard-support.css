@@ -452,7 +452,7 @@ ul.apache-modules li svg {
 
 }
 
-#pCheck {
+.p-check {
     position: absolute;
     right: 20px;
     margin-top: -3px;

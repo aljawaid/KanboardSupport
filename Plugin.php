@@ -3,6 +3,7 @@
 namespace Kanboard\Plugin\KanboardSupport;
 
 use Kanboard\Core\Plugin\Base;
+use Kanboard\Core\Security\Role;
 use Kanboard\Core\Translator;
 use Kanboard\Model\UserModel;
 use Kanboard\Controller\UserViewController;
@@ -34,6 +35,11 @@ class Plugin extends Base
         $this->route->addRoute('/settings/configuration', 'TechnicalSupportController', 'show', 'KanboardSupport');
         $this->route->addRoute('/settings/webhook/information', 'TechnicalSupportController', 'showWebhookInformation', 'KanboardSupport');
 
+        // Environment and configuration diagnostics are administrator-only because the page contains operational metadata.
+        // Access and compatibility contracts are covered by tests/SecurityBoundaryTest.php and
+        // tests/DiagnosticsCompatibilityTest.php.
+        $this->applicationAccessMap->add('TechnicalSupportController', '*', Role::APP_ADMIN);
+
         // HELPER
         $this->helper->register('supportHelper', '\Kanboard\Plugin\KanboardSupport\Helper\SupportHelper');
     }
@@ -50,7 +56,7 @@ class Plugin extends Base
 
     public function getPluginDescription()
     {
-        return t('Display the environment and configuration settings of your Kanboard instance all from one dedicated page. View and compare all options from the config file directly from the interface. Users will benefit from identifying problems caused by missing extensions and server misconfigurations without needing backend access to the server. Made for both regular users and administrators, this privacy and user friendly plugin provides a range of features including integrated webhook documentation, downloading backup copies of the config file and displaying, downloading or deleting the debug log file.');
+        return t('Display Kanboard environment and configuration diagnostics on a dedicated administrator-only page. Compare configuration options, identify missing PHP extensions and server misconfigurations, review webhook documentation, download configuration backups, and view, download or delete the debug log.');
     }
 
     public function getPluginAuthor()

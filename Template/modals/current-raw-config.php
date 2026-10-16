@@ -43,6 +43,6 @@
         </h2>
     </div>
     <div class="modal-contents panel panel-green">
-        <pre class=""><?= file_get_contents(ROOT_DIR . DIRECTORY_SEPARATOR . 'config.php', false, null, 7); ?></pre>
+        <pre class=""><?= $this->text->e((string) file_get_contents(ROOT_DIR . DIRECTORY_SEPARATOR . 'config.php', false, null, 7)); ?></pre>
     </div>
 </div>
