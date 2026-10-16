@@ -1,3 +1,4 @@
+<!-- Privacy control behaviour is covered by tests/PresentationCompatibilityTest.php. -->
 <div class="config-page">
     <div class="page-header" style="margin-top: 10px;">
         <h2 class="">
@@ -18,8 +19,8 @@
             </span>
         </h3>
     </section>
-    <button class="data-btn" title="<?= t('Screenshot friendly') ?>">
-        <?= $this->helper->supportHelper->embedSVGIcon('privacy-icon') ?> <?= t('Hide Data') ?>
+    <button type="button" class="data-btn" title="<?= t('Screenshot friendly') ?>" aria-pressed="false" data-hide-label="<?= $this->text->e(t('Hide Data')) ?>" data-show-label="<?= $this->text->e(t('Show Data')) ?>">
+        <?= $this->helper->supportHelper->embedSVGIcon('privacy-icon') ?> <span class="data-btn-label"><?= t('Hide Data') ?></span>
     </button>
     <!-- USER CONFIGURATION -->
     <section class="support-section">

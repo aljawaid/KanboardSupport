@@ -1,4 +1,5 @@
 /* KANBOARD PLUGIN - KANBOARD SUPPORT CSS FILE */
+/* Responsive and theme behaviour is covered by tests/PresentationCompatibilityTest.php. */
 
 :root {
     --pp-blue: #007AC9;
@@ -20,8 +21,38 @@
     --tech-bg-grey-border-match: #6C6E6E;
     --tech-bg-grey-border-bottom: #555555;
     --tech-light-grey: #07060680;
+    --pp-light-grey: #CCCCCC;
+    --ks-interactive: var(--link-color-primary);
+    --ks-interactive-hover: var(--link-color-hover);
+    --ks-surface: var(--panel-background-color);
+    --ks-code-background: var(--input-addon-background-color);
+    --ks-text: var(--color-primary);
+    --ks-text-muted: var(--color-light);
+    --ks-border: var(--panel-border-color);
     --border-radius-kanboard-support: 3px;
-    --transition-kanboard-support: ease-in-out all .3s;
+    --transition-kanboard-support: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out, box-shadow .2s ease-in-out, opacity .2s ease-in-out, transform .2s ease-in-out;
+}
+
+/* Preserve the established light palette while adding dark-theme values in supporting browsers. */
+@supports (color: light-dark(#000000, #FFFFFF)) {
+    :root {
+        --pp-blue: light-dark(#007AC9, #65BFFF);
+        --pp-blue-alt: light-dark(#00ADFF, #65D3FF);
+        --pp-red: light-dark(#B71234, #FF6685);
+        --pp-red-alt: light-dark(#DA004C, #FF7AA0);
+        --pp-red-alt-2: light-dark(#AE003D, #FF6B9A);
+        --pp-black: light-dark(#000000, #E6EDF3);
+        --pp-grey: light-dark(#4D4D4D, #B6BEC8);
+        --pp-grey-alt: light-dark(#737373, #AAB4C0);
+        --pp-green: light-dark(#2EA02E, #62D462);
+        --pp-green-dark: light-dark(#055D20, #62D462);
+        --pp-orange: light-dark(#FF6500, #FF9A52);
+        --tech-bg-grey: light-dark(#7E8181, #3B4149);
+        --tech-bg-grey-border-match: light-dark(#6C6E6E, #69727D);
+        --tech-bg-grey-border-bottom: light-dark(#555555, #7D8793);
+        --tech-light-grey: light-dark(#07060680, #FFFFFF80);
+        --pp-light-grey: light-dark(#CCCCCC, #69727D);
+    }
 }
 
 .pp-blue { color: var(--pp-blue); fill: var(--pp-blue); }
@@ -115,7 +146,7 @@ h2 .fa-code {
 }
 
 a.user-profile-link:hover, a.user-profile-link:focus, a.kb-updates-link:hover, a.kb-updates-link:focus, a.webhooks-link:hover, a.webhooks-link:focus {
-    color: var(--pp-red-alt-2);
+    color: var(--ks-interactive-hover);
 }
 
 a.user-profile-link, a.webhooks-link {
@@ -151,7 +182,7 @@ a.user-profile-link, a.webhooks-link {
     padding-top: 5px;
 }
 
-#valueBTN {
+.value-btn {
     text-decoration: none !important;
     padding: 0 3px 1px 3px;
     font-size: .7em;
@@ -163,12 +194,12 @@ a.user-profile-link, a.webhooks-link {
     transition: var(--transition-kanboard-support);
 }
 
-#valueBTN:hover {
-    color: var(--pp-red-alt-2) !important;
-    border-color: var(--pp-red-alt-2);
+.value-btn:hover, .value-btn:focus {
+    color: var(--ks-interactive-hover) !important;
+    border-color: var(--ks-interactive-hover);
 }
 
-#valueBTN i {
+.value-btn i {
     margin-right: 0;
     vertical-align: middle;
     padding-right: 0;
@@ -373,7 +404,7 @@ ul.apache-modules li svg {
 }
 
 .tile-hover-plugin-text {
-    background-color: var(--pp-white);
+    background-color: var(--ks-surface);
     font-weight: 600;
     padding: 3px;
 }
@@ -397,18 +428,18 @@ ul.apache-modules li svg {
 }
 
 .tile-name > code.ext-name {
-    color: #000000;
-    background-color: rgb(27, 31, 35, .12);
+    color: var(--ks-text);
+    background-color: var(--ks-code-background);
     box-shadow: 0 0 1px 1px var(--pp-grey);
 }
 
 .tile-name code, .server-config-value code {
     border-radius: var(--border-radius-kanboard-support);
-    background-color: rgb(27, 31, 35, .22);
+    background-color: var(--ks-code-background);
     font-size: .9rem !important;
     font-family: monospace !important;
     letter-spacing: .08rem;
-    color: var(--pp-red-alt-2);
+    color: var(--ks-interactive);
     margin: auto 3px !important;
     padding: 1px 3px 0 4px !important;
 }
@@ -539,8 +570,8 @@ ul.apache-modules li svg {
     transition: var(--transition-kanboard-support);
 }
 
-.data-btn:hover svg {
-    color: var(--pp-red-alt-2);
+.data-btn:hover svg, .data-btn:focus svg {
+    color: var(--ks-interactive-hover);
 }
 
 .privacy-none {
@@ -593,12 +624,12 @@ a.kb-updates-link {
 #SupportedEvents ul > li > code.event-code, code.event-code {
     white-space: nowrap;
     max-width: 100%;
-    background: #FFFFFF;
+    background: var(--ks-surface);
     border: 1px solid var(--pp-light-grey);
     font-size: 75%;
     padding: 2px 5px;
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", Courier, monospace;
-    color: #E74C3C;
+    color: var(--ks-interactive);
     overflow-x: auto;
     border-radius: 2px;
 }
@@ -606,7 +637,7 @@ a.kb-updates-link {
 code.field-code {
     white-space: nowrap;
     max-width: 100%;
-    background: #FFFFFF;
+    background: var(--ks-surface);
     border: 1px solid var(--pp-light-grey);
     font-size: 75%;
     padding: 2px 5px;
@@ -616,7 +647,7 @@ code.field-code {
 }
 
 #WebhookExamples details > summary:hover {
-    color: var(--pp-red-alt-2);
+    color: var(--ks-interactive-hover);
 }
 
 details.accordion-section.app-config > summary:hover, details.accordion-section.apache-config > summary:hover, details.accordion-section.htaccess-config > summary:hover, details.accordion-section.mysql-ssl > summary:hover {
@@ -634,7 +665,7 @@ details.accordion-section.app-config > summary.accordion-title,  details.accordi
 
 #WebhookExamples details > summary, details.accordion-section.mysql-ssl > summary, details.accordion-section.app-config > summary, details.accordion-section.apache-config > summary, details.accordion-section.htaccess-config > summary {
     margin-bottom: 10px;
-    background: var(--pp-white);
+    background: var(--ks-surface);
     cursor: pointer;
     transition: var(--transition-kanboard-support);
 }
@@ -746,11 +777,11 @@ fieldset.add-webhook legend {
 
 fieldset.add-webhook legend, fieldset.parameter-examples legend, fieldset.brute-force-protection legend, fieldset.http-client-proxy legend, fieldset.reverse-proxy legend, fieldset.ldap-users legend, fieldset.ldap-groups legend {
     padding-inline: 5px;
-    background: white;
+    background: var(--ks-surface);
 }
 
 form.add-webhook-form input#form-webhook_url {
-    width: 600px;
+    width: min(600px, 100%);
     border-radius: var(--border-radius-kanboard-support);
 }
 
@@ -801,6 +832,10 @@ form.add-webhook-form .form-actions button {
     border-color: var(--pp-green);
 }
 
+.config-btns button.config-btn-blue:hover, .config-btns button.config-btn-blue:focus {
+    border-color: var(--pp-blue);
+}
+
 .config-btns button.config-btn-red:hover, .config-btns button.config-btn-red:focus, .debug-btns button.config-btn-red:hover, .debug-btns button.config-btn-red:focus {
     border-color: var(--pp-red-alt-2);
 }
@@ -809,12 +844,16 @@ form.add-webhook-form .form-actions button {
     color: var(--pp-green);
 }
 
+.config-btns button.config-btn-blue svg {
+    color: var(--pp-blue);
+}
+
 .config-btns button.config-btn-red svg, .debug-btns button.config-btn-red, .debug-btns button.config-btn-red i {
     color: var(--pp-red-alt-2);
 }
 
 .config-btns button:hover svg, .config-btns button:focus svg {
-    color: var(--pp-black);
+    color: var(--ks-text);
 }
 
 .config-btns button.config-btn-red:disabled, .config-btns button.config-download-btn:disabled {
@@ -857,6 +896,10 @@ form.add-webhook-form .form-actions button {
 
 .config-modal .modal-contents.panel.panel-red {
     border: 2px outset var(--pp-red-alt-2);
+}
+
+.config-modal .modal-contents.panel.panel-blue {
+    border: 2px outset var(--pp-blue);
 }
 
 fieldset.brute-force-protection {
@@ -940,5 +983,81 @@ button.debug-download-btn, button.debug-raw-download-btn {
     border-radius: var(--border-radius-kanboard-support);
     white-space: break-spaces;
     padding: 10px;
-    background-color: #DFDFDF;
+    color: var(--ks-text);
+    background-color: var(--ks-code-background);
+}
+
+.config-modal pre, .htaccess-file {
+    max-width: 100%;
+    overflow: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .support-section {
+        margin: 20px 0 32px;
+    }
+
+    .table-center {
+        width: 100%;
+    }
+
+    .value-name {
+        min-width: 0;
+    }
+
+    .data-wrap {
+        display: block;
+        margin: 16px 0;
+        overflow-wrap: anywhere;
+    }
+
+    .tile-wrapper, .tile-hover-plugin-text-wrapper {
+        box-sizing: border-box;
+        width: min(100%, 240px);
+    }
+
+    .config-btns, .debug-btns, .debug-btns .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .config-btns form, .debug-btns form {
+        display: block;
+    }
+
+    .config-btns button, .config-download-btn, .data-btn, .value-btn {
+        min-height: 44px;
+        margin: 4px;
+    }
+
+    .debug-btns button.debug-download-btn, .debug-btns button.debug-raw-download-btn {
+        margin: 0;
+        border-radius: var(--border-radius-kanboard-support);
+    }
+
+    fieldset.add-webhook, fieldset.parameter-examples, fieldset.brute-force-protection, fieldset.http-client-proxy, fieldset.reverse-proxy, fieldset.ldap-users, fieldset.ldap-groups {
+        margin-inline: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .config-page *, .webhooks-page *, .webhooks-info-page *, .config-modal * {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+@media (forced-colors: active) {
+    .tile-wrapper, .data-btn, .value-btn, .config-btns button, .config-download-btn, .htaccess-file {
+        border: 2px solid CanvasText;
+    }
+
+    .pass-tick, .pass-tick-alt, .fail-x, .fail-x-alt, .tile-pass, .tile-fail-x {
+        color: CanvasText;
+    }
 }
