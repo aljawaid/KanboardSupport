@@ -10,6 +10,8 @@ use Kanboard\Core\Base;
  *
  * @package  Plugin\KanboardSupport\Helper
  * @author   aljawaid
+ *
+ * Cross-platform behaviour is covered by tests/SupportHelperTest.php.
  */
 class SupportHelper extends Base
 {
@@ -27,13 +29,16 @@ class SupportHelper extends Base
      */
     public function embedSVGIcon($icon_filename)
     {
-        if ($this->router->getPlugin()) {
-            // For plugin templates
-            return file_get_contents('plugins/' . $this->helper->app->getPluginName() . '/Assets/icons/' . $icon_filename . '.svg');
-        } else {
-            // For core templates
-            return file_get_contents('plugins/KanboardSupport/Assets/icons/' . $icon_filename . '.svg');
+        if (!preg_match('/^[a-z0-9-]+$/i', $icon_filename)) {
+            return '';
         }
+
+        $pluginName = $this->router->getPlugin() ? $this->helper->app->getPluginName() : 'KanboardSupport';
+        $iconPath = PLUGINS_DIR . DIRECTORY_SEPARATOR . $pluginName . DIRECTORY_SEPARATOR
+            . 'Assets' . DIRECTORY_SEPARATOR . 'icons' . DIRECTORY_SEPARATOR . $icon_filename . '.svg';
+        $icon = is_file($iconPath) ? file_get_contents($iconPath) : false;
+
+        return $icon === false ? '' : $icon;
     }
 
     /**
@@ -49,30 +54,25 @@ class SupportHelper extends Base
      */
     public function maskIPAddress($ip_address)
     {
-        if ($ip_address == 'localhost') {
-            return '<span title="' . t('Only Administrators can see the full value') . '" style="cursor: help;">xhost</span>';
+        $ip_address = trim((string) $ip_address);
+
+        if ($ip_address === '' || strcasecmp($ip_address, 'localhost') === 0) {
+            return $this->maskedValue('xhost');
         }
 
-        // Split the subnets of the IP address using the dot as the seperator
-        $ip_subnets = explode('.', $ip_address);
-
-        // The variable to store the filtered subnets
-        $masked_ip = '';
-
-        foreach ($ip_subnets as $subnet) {
-            // Mask the first three parts of the IP
-            if ($subnet == $ip_subnets[0] || $subnet == $ip_subnets[1] || $subnet == $ip_subnets[2]) {
-                $masked_subnet = 'xxx.';
-            // Leave the last subnet intact
-            } else {
-                $masked_subnet = $subnet;
-            }
-
-            // Append to the variable
-            $masked_ip .= $masked_subnet;
+        if (filter_var($ip_address, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            $octets = explode('.', $ip_address);
+            return $this->maskedValue('xxx.xxx.xxx.' . $octets[3]);
         }
 
-        return '<span title="' . t('Only Administrators can see the full value') . '" style="cursor: help;">' . $masked_ip . '</span>';
+        if (filter_var($ip_address, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+            $normalized = inet_ntop(inet_pton($ip_address));
+            $segments = array_values(array_filter(explode(':', $normalized), 'strlen'));
+            $lastSegment = $segments === array() ? '0' : end($segments);
+            return $this->maskedValue('xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:' . $lastSegment);
+        }
+
+        return $this->maskServer($ip_address);
     }
 
     /**
@@ -85,29 +85,18 @@ class SupportHelper extends Base
      */
     public function maskPath($path)
     {
-        // Split the directories of the path
-        $directories = explode('/', $path);
+        $normalized = str_replace('\\', '/', trim((string) $path));
+        $directories = array_values(array_filter(explode('/', trim($normalized, '/')), 'strlen'));
 
-        // The variable to store the filtered subnets
-        $masked_path = '';
-
-        foreach ($directories as $directory) {
-            if ($directory == $directories[0]) {
-                // Remove first trailing slash
-                $masked_directory = '';
-            } elseif ($directory != $directories[0] && $directory != end($directories)) {
-                // Mask all but the last directory in the path
-                $masked_directory = '/xxx';
-            } else {
-                // Leave the last directory intact
-                $masked_directory = '/' . $directory;
-            }
-
-            // Append to the variable
-            $masked_path .= $masked_directory;
+        if ($directories === array()) {
+            return $this->maskedValue('xxx');
         }
 
-        return '<span title="' . t('Only Administrators can see the full value') . '" style="cursor: help;">' . $masked_path . '</span>';
+        $lastDirectory = array_pop($directories);
+        $maskedDirectories = array_fill(0, max(1, count($directories)), 'xxx');
+        $maskedDirectories[] = $lastDirectory;
+
+        return $this->maskedValue(implode('/', $maskedDirectories));
     }
 
     /**
@@ -121,26 +110,23 @@ class SupportHelper extends Base
      */
     public function maskServer($server_name)
     {
-        // Split the server name using the dot as the seperator
-        $address_part = explode('.', $server_name);
+        $server_name = trim((string) $server_name);
 
-        // The variable to store the filtered parts
-        $masked_server = '';
-
-        foreach ($address_part as $part) {
-            // Mask the middle parts of the server name
-            if ($part != $address_part[0] && $part != end($address_part)) {
-                $masked_part = '.xxx.';
-            // Leave the first and last part intact
-            } else {
-                $masked_part = $part;
-            }
-
-            // Append to the variable
-            $masked_server .= $masked_part;
+        if (filter_var($server_name, FILTER_VALIDATE_IP)) {
+            return $this->maskIPAddress($server_name);
         }
 
-        return '<span title="' . t('Only Administrators can see the full value') . '" style="cursor: help;">' . $masked_server . '</span>';
+        $parts = array_values(array_filter(explode('.', $server_name), 'strlen'));
+
+        if (count($parts) < 2) {
+            return $this->maskedValue('xhost');
+        }
+
+        if (count($parts) === 2) {
+            return $this->maskedValue('xxx.' . $parts[1]);
+        }
+
+        return $this->maskedValue($parts[0] . '.xxx.' . end($parts));
     }
 
     /**
@@ -152,20 +138,22 @@ class SupportHelper extends Base
      */
     public function getBrowser()
     {
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        $user_agent = $this->request->getServerVariable('HTTP_USER_AGENT');
         $browser = "N/A";
         $browsers = [
             '/msie/i' => 'Internet Explorer',
             '/firefox/i' => 'Mozilla Firefox',
-            '/safari/i' => 'Safari',
-            '/chrome/i' => 'Chrome',
             '/edge/i' => 'Edge',
+            '/edg/i' => 'Edge',
+            '/opr/i' => 'Opera',
             '/opera/i' => 'Opera',
+            '/chrome/i' => 'Chrome',
+            '/safari/i' => 'Safari',
             '/mobile/i' => 'Mobile browser',
         ];
         foreach ($browsers as $regex => $value) {
             if (preg_match($regex, $user_agent)) {
-                $browser = $value;
+                return $value;
             }
         }
 
@@ -182,7 +170,15 @@ class SupportHelper extends Base
      */
     public function getPermissions($dir)
     {
+        if (!file_exists($dir)) {
+            return t('Not available');
+        }
+
         $perms = fileperms($dir);
+
+        if ($perms === false) {
+            return t('Not available');
+        }
 
         switch ($perms & 0xF000) {
             case 0xC000: // socket
@@ -232,7 +228,6 @@ class SupportHelper extends Base
                     (($perms & 0x0200) ? 'T' : '-'));
 
         return $info;
-        clearstatcache();
     }
 
     /**
@@ -247,11 +242,12 @@ class SupportHelper extends Base
     public function getPermissionsLinux($directory)
     {
         if (!file_exists($directory)) {
-            return false;
+            return t('Not available');
         }
 
-        return substr(sprintf('%o', fileperms($directory)), -4);
-        clearstatcache();
+        $permissions = fileperms($directory);
+
+        return $permissions === false ? t('Not available') : substr(sprintf('%o', $permissions), -4);
     }
 
     /**
@@ -264,9 +260,19 @@ class SupportHelper extends Base
      */
     public function getPermissionsOwner($directory)
     {
-        $owner = posix_getpwuid(fileowner($directory));
+        if (!file_exists($directory)) {
+            return t('Not available');
+        }
 
-        return $owner['name'];
+        $ownerId = fileowner($directory);
+
+        if ($ownerId === false || !function_exists('posix_getpwuid')) {
+            return t('Not available');
+        }
+
+        $owner = posix_getpwuid($ownerId);
+
+        return is_array($owner) && isset($owner['name']) ? $owner['name'] : t('Not available');
     }
 
     /**
@@ -280,10 +286,18 @@ class SupportHelper extends Base
      */
     public function displayDebugFile($filepath = LOG_FILE, $lines = 50, $adaptive = true)
     {
+        $lines = max(1, (int) $lines);
+
         // Open file
         $f = @fopen($filepath, "rb");
         if ($f === false) {
-            return false;
+            return '';
+        }
+
+        $fileStats = fstat($f);
+        if ($fileStats === false || $fileStats['size'] === 0) {
+            fclose($f);
+            return '';
         }
 
         // Sets buffer size, according to the number of lines to retrieve.
@@ -295,7 +309,10 @@ class SupportHelper extends Base
         }
 
         // Jump to last character
-        fseek($f, -1, SEEK_END);
+        if (fseek($f, -1, SEEK_END) !== 0) {
+            fclose($f);
+            return '';
+        }
 
         // Read it and adjust line number if necessary
         // (Otherwise the result would be wrong if file doesn't end with a blank line)
@@ -345,14 +362,90 @@ class SupportHelper extends Base
      * @return      $filesize       string
      * @author      aljawaid
      */
-    public function getLogFileSize()
+    public function getLogFileSize($filepath = LOG_FILE)
     {
-        $debug_log_file = filesize(LOG_FILE);
+        if (!is_file($filepath)) {
+            return t('Not available');
+        }
+
+        $debug_log_file = filesize($filepath);
+        if ($debug_log_file === false) {
+            return t('Not available');
+        }
+
         $filesizeMB = ($debug_log_file / 1024 / 1024);
         $filesize = number_format($filesizeMB, 2);
 
         return $filesize . '&nbsp;MB';
+    }
 
-        clearstatcache();
+    /**
+     * Return a server variable without producing missing-key warnings.
+     *
+     * @param  string $name
+     * @param  string $fallback
+     * @return string
+     */
+    public function getServerVariable($name, $fallback = '')
+    {
+        $value = $this->request->getServerVariable($name);
+
+        return $value === '' ? $fallback : $value;
+    }
+
+    /**
+     * Return the effective session storage directory.
+     *
+     * @return string
+     */
+    public function getSessionSavePath()
+    {
+        $path = session_save_path();
+
+        return $path === '' ? sys_get_temp_dir() : $path;
+    }
+
+    /**
+     * Return the current request path without relying on non-standard server variables.
+     *
+     * @return string
+     */
+    public function getCurrentPage()
+    {
+        return $this->request->getUri();
+    }
+
+    /**
+     * Report whether Kanboard detected a secure request, including proxy-aware requests.
+     *
+     * @return bool
+     */
+    public function isHttps()
+    {
+        return $this->request->isHTTPS();
+    }
+
+    /**
+     * Render a privacy-masked value with an escaped explanation.
+     *
+     * @param  string $value
+     * @return string
+     */
+    private function maskedValue($value)
+    {
+        return '<span class="masked-value" title="' . $this->escape(t('Only Administrators can see the full value')) . '">'
+            . $this->escape($value)
+            . '</span>';
+    }
+
+    /**
+     * Escape dynamic text for HTML output.
+     *
+     * @param  string $value
+     * @return string
+     */
+    private function escape($value)
+    {
+        return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     }
 }

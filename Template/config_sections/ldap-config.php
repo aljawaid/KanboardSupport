@@ -51,7 +51,7 @@
         <?php endif ?>
     </span>
     <span class="data-wrap mt-0">
-        <li class="app-info-title"><?= e('Start with %s', '<abbr title="' . t('Transport Security Layer') . '">TLS</abbr>') ?></li>
+        <li class="app-info-title"><?= e('Start with %s', '<abbr title="' . t('Transport Layer Security') . '">TLS</abbr>') ?></li>
         <?php if (LDAP_START_TLS): ?>
             <li class="app-info-value border-bottom-thick"><?= t('Enabled') ?></li>
         <?php else: ?>

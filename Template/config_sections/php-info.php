@@ -1,3 +1,4 @@
+<!-- Runtime compatibility checks are covered by tests/DiagnosticsCompatibilityTest.php. -->
 <h2 class="">
     <i class="fa fa-code"></i> <?= t('PHP Information') ?>
 </h2>
@@ -8,7 +9,7 @@
             <li class="app-info-value value-version border-bottom-thick">
                 <strong><abbr title="<?= t('Major Version') ?>"><?= PHP_MAJOR_VERSION ?></abbr></strong>.<abbr title="<?= t('Minor Version') ?>"><?= PHP_MINOR_VERSION ?></abbr>.<abbr title="<?= t('Release Version') ?>"><?= PHP_RELEASE_VERSION ?></abbr>
             </li>
-            <?php if (version_compare(PHP_VERSION, '7.2.0', '<')): ?>
+            <?php if (version_compare(PHP_VERSION, '8.1.0', '<')): ?>
                 <span class="fail">
                     <span class="fail-x">&#10008;</span> <?= t('Less than minimum requirement') ?>
                 </span>
@@ -277,33 +278,28 @@
     </span>
 </div>
 <!-- PDO Extension -->
+<?php
+$pdoExtensions = array(
+    'mysql' => 'pdo_mysql',
+    'postgres' => 'pdo_pgsql',
+    'sqlite' => 'pdo_sqlite',
+);
+$pdoExtension = isset($pdoExtensions[DB_DRIVER]) ? $pdoExtensions[DB_DRIVER] : null;
+$pdoExtensionLoaded = $pdoExtension !== null && extension_loaded($pdoExtension);
+?>
 <div class="tile-wrapper">
     <div class="tile-name" title="<?= t('PHP Extension Name') ?>">
-        <?php if (DB_DRIVER === 'mysql'): ?>
-            <code class="ext-name">pdo_mysql</code>
-        <?php elseif (DB_DRIVER === 'postgres'): ?>
-            <code class="ext-name">pdo_pgsql</code>
-        <?php elseif (DB_DRIVER === 'sqlite'): ?>
-            <code class="ext-name">pdo_sqlite</code>
+        <?php if ($pdoExtension !== null): ?>
+            <code class="ext-name"><?= $this->text->e($pdoExtension) ?></code>
         <?php else: ?>
             <code class="ext-name"><?= t('Not Detected') ?></code>
         <?php endif ?>
     </div>
     <div class="tile-version value-version" title="<?= t('Version') ?>">
-        <?php if (DB_DRIVER === 'mysql' && !extension_loaded('pdo_mysql')): ?>
+        <?php if (!$pdoExtensionLoaded): ?>
             <small><?= t('Missing PDO Extension') ?></small>
         <?php else: ?>
-            <?= phpversion('pdo_mysql') ?>
-        <?php endif ?>
-        <?php if (DB_DRIVER === 'postgres' && !extension_loaded('pdo_pgsql')): ?>
-            <small><?= t('Missing PDO Extension') ?></small>
-        <?php else: ?>
-            <?= phpversion('pdo_pgsql') ?>
-        <?php endif ?>
-        <?php if (DB_DRIVER === 'sqlite' && !extension_loaded('pdo_sqlite')): ?>
-            <small><?= t('Missing PDO Extension') ?></small>
-        <?php else: ?>
-            <?= phpversion('pdo_sqlite') ?>
+            <?= $this->text->e((string) phpversion($pdoExtension)) ?>
         <?php endif ?>
     </div>
     <?php if (DB_DRIVER === 'mysql'): ?>
@@ -317,16 +313,8 @@
     <?php endif ?>
     <div class="tile-icon" title="<?= t('PHP Extension') ?>"><?= $this->helper->supportHelper->embedSVGIcon('php-logo-icon') ?></div>
     <span class="tile-check">
-        <?php if (DB_DRIVER === 'mysql' && !extension_loaded('pdo_mysql')): ?>
+        <?php if (!$pdoExtensionLoaded): ?>
             <span class="tile-fail-x" title="<?= t('Required Extension') ?>">&#10008;</span>
-        <?php elseif (DB_DRIVER === 'postgres' && !extension_loaded('pdo_pgsql')): ?>
-            <span class="tile-check">
-                <span class="tile-fail-x" title="<?= t('Required Extension') ?>">&#10008;</span>
-            </span>
-        <?php elseif (DB_DRIVER === 'sqlite' && !extension_loaded('pdo_sqlite')): ?>
-            <span class="tile-check">
-                <span class="tile-fail-x" title="<?= t('Required Extension') ?>">&#10008;</span>
-            </span>
         <?php else: ?>
             <span class="tile-pass" title="<?= t('Pass') ?>">&#10004;</span>
         <?php endif ?>
