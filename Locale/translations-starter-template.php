@@ -1,19 +1,19 @@
-<!-- REMOVE THIS SECTION -->
-<!-- ------------------- -->
-<!-- TEMPLATE FILE FOR LOCAL TRANSLATIONS - KEEP FILENAME IN LOWERCASE AS translations.php UNDER LANGUAGE CODE -->
-<!-- EXAMPLE FILE: /Locale/en_GB/translations.php -->
-<!-- EXAMPLE FILE: /Locale/en_US/translations.php -->
-<!-- EXAMPLE FILE: /Locale/fr_FR/translations.php -->
-<!-- EXAMPLE FILE: /Locale/de_DE/translations.php -->
-<!-- ------------------- -->
-<!-- REMOVE THIS SECTION -->
 <?php
 
+/**
+ * Starter template for local translations.
+ *
+ * Copy this file to Locale/<language_CODE>/translations.php, keep the filename
+ * lowercase, translate each value, and remove this explanatory comment.
+ * Examples include Locale/en_GB/translations.php and Locale/fr_FR/translations.php.
+ */
+
 return array(
+    // Translation coverage is enforced by tests/TranslationContractTest.php.
     //
     // GENERAL
     //
-    'Display the environment and configuration settings of your Kanboard instance all from one dedicated page. View and compare all options from the config file directly from the interface. Users will benefit from identifying problems caused by missing extensions and server misconfigurations without needing backend access to the server. Made for both regular users and administrators, this privacy and user friendly plugin provides a range of features including integrated webhook documentation, downloading backup copies of the config file and displaying, downloading or deleting the debug log file.' => '',
+    'Display Kanboard environment and configuration diagnostics on a dedicated administrator-only page. Compare configuration options, identify missing PHP extensions and server misconfigurations, review webhook documentation, download configuration backups, and view, download or delete the debug log.' => '',
     //
     // Controller/TechnicalSupportController.php
     //
@@ -22,10 +22,15 @@ return array(
     'Current Raw Configuration File' => '',
     'Default Raw Configuration File' => '',
     'Debug Log' => '',
+    'Debug Log Deleted Successfully' => '',
+    'Unable to Delete Debug Log' => '',
+    'Unable to download the log file. Check that the file exists.' => '',
+    'Unable to create the requested download. Check the file and temporary folder permissions.' => '',
     //
     // Helper/SupportHelper.php
     //
     'Directory' => '',
+    'Not available' => '',
     'Only Administrators can see the full value' => '',
     //
     // Template/config/sidebar.php
@@ -38,9 +43,10 @@ return array(
     'This page shows all default and custom values from the configuration file stored in %s combined with application-specific settings detected from your server. %s' => '',
     'Passwords are not included.' => '',
     'Data Privacy' => '',
-    'This page shows sensitive data. Hide selective information before sharing.' => '',
+    'This page shows sensitive data. Always hide selective information before sharing.' => '',
     'Screenshot friendly' => '',
     'Hide Data' => '',
+    'Show Data' => '',
     //
     // Template/config/webhook-code-examples-event-payloads.php
     //
@@ -155,6 +161,7 @@ return array(
     'Database' => '',
     'Session Duration' => '',
     'Until browser is closed' => '',
+    'minutes' => '',
     'Debug Mode' => '',
     'This setting will affect performance and should only be enabled for troubleshooting purposes' => '',
     'Not Enabled' => '',
@@ -162,10 +169,12 @@ return array(
     'View Log' => '',
     'Download Log' => '',
     'Download Compressed Log File' => '',
+    'ZIP extension is required for compressed downloads' => '',
     'Download Log File' => '',
     'Uncompressed file size' => '',
     'Delete the log file' => '',
     'Delete Log' => '',
+    'Delete the debug log file?' => '',
     'Once deleted, the file will be immediately recreated.' => '',
     'Login and Security Configuration' => '',
     'Self-Signed Certificates' => '',
@@ -238,9 +247,9 @@ return array(
     'Database Timeout' => '',
     'This value must be in seconds' => '',
     'This is the default and recommended setting. If set, the value must be in seconds.' => '',
-    'MySQL % Connection' => '',
+    'MySQL %s Connection' => '',
     'Secure Sockets Layer' => '',
-    'These parameters must be defined in the configuration file in order to enable the MySQL SSL connection. For most installations, it is safe to ignore this section.' => '',
+    'These parameters must be defined in the configuration file in order to enable the MySQL %s connection. For most installations, it is safe to ignore this section.' => '',
     'Parameter Examples' => '',
     'MySQL %s Key' => '',
     'MySQL %s Certificate' => '',
@@ -371,6 +380,7 @@ return array(
     //
     'User Configuration' => '',
     'Your Profile Full Name' => '',
+    'View Profile' => '',
     'Your User ID' => '',
     'Your Role' => '',
     'Your IP Address' => '',
@@ -379,6 +389,7 @@ return array(
     'Current Page' => '',
     'Your Browser Name' => '',
     'Your Browser' => '',
+    '%s. %s' => '',
     //
     // Template/modals/debug-log.php
     //

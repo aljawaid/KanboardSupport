@@ -1,10 +1,11 @@
 <?php
 
 return array(
+    // Translation coverage is enforced by tests/TranslationContractTest.php.
     //
     // GENERAL
     //
-    'Display the environment and configuration settings of your Kanboard instance all from one dedicated page. View and compare all options from the config file directly from the interface. Users will benefit from identifying problems caused by missing extensions and server misconfigurations without needing backend access to the server. Made for both regular users and administrators, this privacy and user friendly plugin provides a range of features including integrated webhook documentation, downloading backup copies of the config file and displaying, downloading or deleting the debug log file.' => 'Display the environment and configuration settings of your Kanboard instance all from one dedicated page. View and compare all options from the config file directly from the interface. Users will benefit from identifying problems caused by missing extensions and server misconfigurations without needing backend access to the server. Made for both regular users and administrators, this privacy and user friendly plugin provides a range of features including integrated webhook documentation, downloading backup copies of the config file and displaying, downloading or deleting the debug log file.',
+    'Display Kanboard environment and configuration diagnostics on a dedicated administrator-only page. Compare configuration options, identify missing PHP extensions and server misconfigurations, review webhook documentation, download configuration backups, and view, download or delete the debug log.' => 'Display Kanboard environment and configuration diagnostics on a dedicated administrator-only page. Compare configuration options, identify missing PHP extensions and server misconfigurations, review webhook documentation, download configuration backups, and view, download or delete the debug log.',
     //
     // Controller/TechnicalSupportController.php
     //
@@ -13,10 +14,15 @@ return array(
     'Current Raw Configuration File' => 'Current Raw Configuration File',
     'Default Raw Configuration File' => 'Default Raw Configuration File',
     'Debug Log' => 'Debug Log',
+    'Debug Log Deleted Successfully' => 'Debug Log Deleted Successfully',
+    'Unable to Delete Debug Log' => 'Unable to Delete Debug Log',
+    'Unable to download the log file. Check that the file exists.' => 'Unable to download the log file. Check that the file exists.',
+    'Unable to create the requested download. Check the file and temporary folder permissions.' => 'Unable to create the requested download. Check the file and temporary folder permissions.',
     //
     // Helper/SupportHelper.php
     //
     'Directory' => 'Directory',
+    'Not available' => 'Not available',
     'Only Administrators can see the full value' => 'Only Administrators can see the full value',
     //
     // Template/config/sidebar.php
@@ -29,9 +35,10 @@ return array(
     'This page shows all default and custom values from the configuration file stored in %s combined with application-specific settings detected from your server. %s' => 'This page shows all default and custom values from the configuration file stored in %s combined with application-specific settings detected from your server. %s',
     'Passwords are not included.' => 'Passwords are not included.',
     'Data Privacy' => 'Data Privacy',
-    'This page shows sensitive data. Hide selective information before sharing.' => 'This page shows sensitive data. Hide selective information before sharing.',
+    'This page shows sensitive data. Always hide selective information before sharing.' => 'This page shows sensitive data. Always hide selective information before sharing.',
     'Screenshot friendly' => 'Screenshot friendly',
     'Hide Data' => 'Hide Data',
+    'Show Data' => 'Show Data',
     //
     // Template/config/webhook-code-examples-event-payloads.php
     //
@@ -146,6 +153,7 @@ return array(
     'Database' => 'Database',
     'Session Duration' => 'Session Duration',
     'Until browser is closed' => 'Until browser is closed',
+    'minutes' => 'minutes',
     'Debug Mode' => 'Debug Mode',
     'This setting will affect performance and should only be enabled for troubleshooting purposes' => 'This setting will affect performance and should only be enabled for troubleshooting purposes',
     'Not Enabled' => 'Not Enabled',
@@ -153,10 +161,12 @@ return array(
     'View Log' => 'View Log',
     'Download Log' => 'Download Log',
     'Download Compressed Log File' => 'Download Compressed Log File',
+    'ZIP extension is required for compressed downloads' => 'ZIP extension is required for compressed downloads',
     'Download Log File' => 'Download Log File',
     'Uncompressed file size' => 'Uncompressed file size',
     'Delete the log file' => 'Delete the log file',
     'Delete Log' => 'Delete Log',
+    'Delete the debug log file?' => 'Delete the debug log file?',
     'Once deleted, the file will be immediately recreated.' => 'Once deleted, the file will be immediately recreated.',
     'Login and Security Configuration' => 'Login and Security Configuration',
     'Self-Signed Certificates' => 'Self-Signed Certificates',
@@ -362,6 +372,7 @@ return array(
     //
     'User Configuration' => 'User Configuration',
     'Your Profile Full Name' => 'Your Profile Full Name',
+    'View Profile' => 'View Profile',
     'Your User ID' => 'Your User ID',
     'Your Role' => 'Your Role',
     'Your IP Address' => 'Your IP Address',
@@ -370,6 +381,7 @@ return array(
     'Current Page' => 'Current Page',
     'Your Browser Name' => 'Your Browser Name',
     'Your Browser' => 'Your Browser',
+    '%s. %s' => '%s. %s',
     //
     // Template/modals/debug-log.php
     //

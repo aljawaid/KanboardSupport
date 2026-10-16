@@ -3,6 +3,14 @@
 ## v4.5.1
 
 _(most recent changes are listed on top):_
+- FIX: Add focused Kanboard and PHP compatibility, access, translation and presentation regression checks
+- FIX: Complete and synchronise English, French, German and Spanish translations
+- FIX: Add responsive layouts, dark-theme colours, reduced-motion support and accessible privacy controls
+- FIX: Correct cross-platform path, permission, browser, HTTPS, session and debug-log diagnostics
+- FIX: Correct the displayed PHP and PDO requirements for Kanboard 1.2.54
+- SECURITY FIX: Restrict configuration and operational diagnostics to administrators
+- SECURITY FIX: Require POST and CSRF validation for configuration and debug-log actions
+- SECURITY FIX: Escape raw configuration, debug-log and htaccess output before rendering
 - FIX: Detect secure read-only application and plugin directories correctly
 - FIX: Mark the disabled plugin installer as the recommended production setting
 - FIX: Require Mailmagik PHP extensions only when the Mailmagik plugin is installed

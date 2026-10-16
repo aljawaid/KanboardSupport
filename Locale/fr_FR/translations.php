@@ -1,10 +1,11 @@
 <?php
 
 return array(
+    // Translation coverage is enforced by tests/TranslationContractTest.php.
     //
     // GENERAL
     //
-    'Display the environment and configuration settings of your Kanboard instance all from one dedicated page. View and compare all options from the config file directly from the interface. Users will benefit from identifying problems caused by missing extensions and server misconfigurations without needing backend access to the server. Made for both regular users and administrators, this privacy and user friendly plugin provides a range of features including integrated webhook documentation, downloading backup copies of the config file and displaying, downloading or deleting the debug log file.' => 'Affichez les paramètres d\'environnement et de configuration de votre instance Kanboard à partir d\'une page dédiée. Visualisez et comparez toutes les options du fichier de configuration directement à partir de l\'interface. Les utilisateurs bénéficieront de l\'identification des problèmes causés par les extensions manquantes et les mauvaises configurations du serveur sans avoir besoin d\'accéder au serveur. Conçu pour les utilisateurs réguliers et les administrateurs, ce plugin convivial et respectueux de la vie privée offre une série de fonctionnalités, notamment la documentation intégrée sur les webhooks, le téléchargement de copies de sauvegarde du fichier de configuration et l\'affichage, le téléchargement ou la suppression du fichier journal de débogage.',
+    'Display Kanboard environment and configuration diagnostics on a dedicated administrator-only page. Compare configuration options, identify missing PHP extensions and server misconfigurations, review webhook documentation, download configuration backups, and view, download or delete the debug log.' => 'Affichez les diagnostics d\'environnement et de configuration de Kanboard sur une page dédiée, réservée aux administrateurs. Comparez les options de configuration, identifiez les extensions PHP manquantes et les erreurs de configuration du serveur, consultez la documentation des webhooks, téléchargez des sauvegardes de configuration et affichez, téléchargez ou supprimez le journal de débogage.',
     //
     // Controller/TechnicalSupportController.php
     //
@@ -13,10 +14,15 @@ return array(
     'Current Raw Configuration File' => 'Fichier de configuration brut actuel',
     'Default Raw Configuration File' => 'Fichier de configuration brute par défaut',
     'Debug Log' => 'Journal de Débogage',
+    'Debug Log Deleted Successfully' => 'Le journal de débogage a été supprimé',
+    'Unable to Delete Debug Log' => 'Impossible de supprimer le journal de débogage',
+    'Unable to download the log file. Check that the file exists.' => 'Impossible de télécharger le fichier journal. Vérifiez que le fichier existe.',
+    'Unable to create the requested download. Check the file and temporary folder permissions.' => 'Impossible de créer le téléchargement demandé. Vérifiez les autorisations du fichier et du dossier temporaire.',
     //
     // Helper/SupportHelper.php
     //
-    'Directory' => 'Annuaire',
+    'Directory' => 'Répertoire',
+    'Not available' => 'Non disponible',
     'Only Administrators can see the full value' => 'Seuls les administrateurs peuvent voir la valeur totale',
     //
     // Template/config/sidebar.php
@@ -29,9 +35,10 @@ return array(
     'This page shows all default and custom values from the configuration file stored in %s combined with application-specific settings detected from your server. %s' => 'Cette page affiche toutes les valeurs par défaut et personnalisées du fichier de configuration stocké dans %s, ainsi que les paramètres spécifiques à l\'application détectés sur votre serveur. %s',
     'Passwords are not included.' => 'Les mots de passe ne sont pas inclus.',
     'Data Privacy' => 'Confidentialité de Données',
-    'This page shows sensitive data. Hide selective information before sharing.' => 'Cette page contient des données sensibles. Masquez certaines informations avant de les partager.',
+    'This page shows sensitive data. Always hide selective information before sharing.' => 'Cette page contient des données sensibles. Masquez toujours les informations sélectionnées avant de les partager.',
     'Screenshot friendly' => 'Compatible avec les captures d\'écran',
     'Hide Data' => 'Masquer les données',
+    'Show Data' => 'Afficher les données',
     //
     // Template/config/webhook-code-examples-event-payloads.php
     //
@@ -146,6 +153,7 @@ return array(
     'Database' => 'Base de données',
     'Session Duration' => 'Durée de la session',
     'Until browser is closed' => 'Jusqu\'à la fermeture du navigateur',
+    'minutes' => 'minutes',
     'Debug Mode' => 'Mode débogage',
     'This setting will affect performance and should only be enabled for troubleshooting purposes' => 'Ce paramètre affecte les performances et ne doit être activé qu\'à des fins de dépannage.',
     'Not Enabled' => 'Non activé',
@@ -153,10 +161,12 @@ return array(
     'View Log' => 'Afficher le journal',
     'Download Log' => 'Télécharger le journal',
     'Download Compressed Log File' => 'Télécharger le fichier journal compressé',
+    'ZIP extension is required for compressed downloads' => 'L\'extension ZIP est requise pour les téléchargements compressés',
     'Download Log File' => 'Télécharger le fichier journal',
     'Uncompressed file size' => 'Taille du fichier non compressé',
     'Delete the log file' => 'Supprimer le fichier journal',
     'Delete Log' => 'Supprimer le journal',
+    'Delete the debug log file?' => 'Supprimer le fichier journal de débogage ?',
     'Once deleted, the file will be immediately recreated.' => 'Une fois supprimé, le fichier sera immédiatement recréé.',
     'Login and Security Configuration' => 'Configuration de la connexion et de la sécurité',
     'Self-Signed Certificates' => 'Certificats auto-signés',
@@ -362,6 +372,7 @@ return array(
     //
     'User Configuration' => 'Configuration de l\'utilisateur',
     'Your Profile Full Name' => 'Nom complet de votre profil',
+    'View Profile' => 'Voir le profil',
     'Your User ID' => 'Votre ID utilisateur',
     'Your Role' => 'Votre rôle',
     'Your IP Address' => 'Votre adresse IP',
@@ -370,6 +381,7 @@ return array(
     'Current Page' => 'Page actuelle',
     'Your Browser Name' => 'Nom de votre navigateur',
     'Your Browser' => 'Votre navigateur',
+    '%s. %s' => '%s. %s',
     //
     // Template/modals/debug-log.php
     //

@@ -31,9 +31,9 @@
     </a>
 </p>
 
-Display the environment and configuration settings of your Kanboard instance all from one dedicated page. View and compare all options from the config file directly from the interface. Users will benefit from identifying problems caused by missing extensions and server misconfigurations without needing backend access to the server.
+Display Kanboard environment and configuration diagnostics on one dedicated, administrator-only page. Compare configuration options, identify missing PHP extensions and server misconfigurations, review webhook documentation, download configuration backups, and manage the debug log without direct server access.
 
-Made for both regular users and administrators, this privacy and user friendly plugin provides a range of features including integrated webhook documentation and downloading backup copies of the config file.
+The interface is responsive, supports Kanboard's light and dark themes, and can hide sensitive values before diagnostic information is shared.
 
 Works smoothly with [PluginManager](https://github.com/aljawaid/PluginManager) and [ContentCleaner](https://github.com/aljawaid/ContentCleaner).
 
@@ -43,7 +43,7 @@ Works smoothly with [PluginManager](https://github.com/aljawaid/PluginManager) a
 
 - Hide sensitive data before sharing technical information
   - A single privacy button hides all sensitive information
-  - Enhanced privacy for regular users displaying selective information for sensitive values
+  - Diagnostic values are restricted to administrators and can be masked before sharing
 - Troubleshoot plugins with [PluginManager](https://github.com/aljawaid/PluginManager)
 - Shows the required PHP modules for [Mailmagik](https://github.com/creecros/Mailmagik)
 - **Display and Backup Config Files**
@@ -62,14 +62,14 @@ Works smoothly with [PluginManager](https://github.com/aljawaid/PluginManager) a
   - Comprehensive documentation explaining how to work with webhooks
 - **Directory Permissions**
   - Check if directories are writeable or not
-  - Display folder owner to Admins
-  - Display detected folder permissions to Admins
-  - Display permissions also in Linux format to Admins
+  - Display folder owner to administrators where the operating system exposes it
+  - Display detected folder permissions to administrators
+  - Display permissions in Linux format to administrators
 - **User Configuration**
   - Displays basic settings about the logged in user (including user ID, IP address and browser details) which may be useful to support professionals
-  - IP Lookup button for Admin
+  - IP lookup button for administrators
 - **Application Information**
-  - Displays Kanboard name, version and (if admin user) direct link to GitHub releases for Kanboard
+  - Displays Kanboard name, version and a direct link to Kanboard releases
   - Display all values from the `config.php` file
 - **Database Connection**
   - Display database information (without password) from the config file
@@ -77,16 +77,16 @@ Works smoothly with [PluginManager](https://github.com/aljawaid/PluginManager) a
   - Relocated SQLite database (upload/download) options from the About page
 - **Email Connection**
   - Show basic mail server settings
-  - BCC field value only displayed for Admins
+  - BCC field value only displayed to administrators
   - Show SMTP details
   - Show Sendmail details
 - **Server Configuration**
   - Show useful path locations
   - Display operating system, versions and ports
-  - IP Lookup button for Admin
+  - IP lookup button for administrators
   - **Apache Configuration**
     - Display installed Apache modules
-    - HIghlight relevant module for URL rewriting
+    - Highlight the relevant module for URL rewriting
   - **Hypertext Access File**
     - Display the `.htaccess` file to admin users
 - **PHP Information**
@@ -145,7 +145,7 @@ Go to `Settings` &#10562; `Configuration`
 
 **_or_**
 
-Go to User Menu (top right) &#10562; `Configuration`
+Go to the administrator user menu (top right) &#10562; `Configuration`
 
 **_or_**
 
@@ -157,7 +157,7 @@ Go to `Settings` &#10562; `Webhooks`
 
 <p align="left">
     <a href="https://github.com/aljawaid/KanboardSupport/actions/workflows/linter.yml">
-        <img src="https://github.com/aljawaid/KanboardSupport/actions/workflows/linter.yml/badge.svg?branch=master&event=push" alt="Code Scanning" title="View Test">
+        <img src="https://github.com/aljawaid/KanboardSupport/actions/workflows/linter.yml/badge.svg?branch=master&event=push" alt="Code Quality" title="View Test">
     </a>
     <a href="https://github.com/aljawaid/KanboardSupport/actions/workflows/php-compatibility.yaml">
         <img src="https://github.com/aljawaid/KanboardSupport/actions/workflows/php-compatibility.yaml/badge.svg?branch=master&event=push" alt="PHP Compatibility Test" title="View Test">
@@ -174,7 +174,8 @@ Go to `Settings` &#10562; `Webhooks`
 <details>
     <summary><strong>Compatibility</strong></summary>
 
-- Requires [Kanboard](https://github.com/kanboard/kanboard "Kanboard - Kanban Project Management Software") ≥`1.2.20`
+- Requires [Kanboard](https://github.com/kanboard/kanboard "Kanboard - Kanban Project Management Software") ≥`1.2.54` and PHP ≥`8.1`
+- Focused compatibility checks cover PHP `8.2` to `8.5`
 - **Other Plugins & Action Plugins**
   - _No known issues_
   - Compatible with [PluginManager](https://github.com/aljawaid/PluginManager), [ApplicationBranding](https://github.com/aljawaid/ApplicationBranding), [ContentCleaner](https://github.com/aljawaid/ContentCleaner), [MailMagik](https://github.com/creecros/Mailmagik)

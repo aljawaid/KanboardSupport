@@ -5,9 +5,10 @@
     - Kanboard: `Plugins` &#10562; `Plugin Directory`
   - _or with [PluginManager](https://github.com/aljawaid/PluginManager "A Kanboard plugin") installed:_
     - Kanboard: `Settings` &#10562; `Plugins` &#10562; `Plugin Directory`
-- **Install via the [Releases](../master/Releases/ "A copy of each release is saved in the folder") folder**
-  - A copy of each release is saved in the `/Releases` folder of the repository
-  - Simply extract the `.zip` file into the `/plugins` directory
+- **Install a historical version from the [Releases](../master/Releases/ "Historical release archives") folder**
+  - The `/Releases` folder contains unchanged archives of earlier versions for reference and rollback
+  - Use an archive only when you intentionally need that exact older version; use the latest published release for normal installations
+  - Extract the selected `.zip` file into the `/plugins` directory
 - **Install via [GitHub](https://github.com/ "Find the correct plugin from the list of repositories")**
   - Download the `.zip` file and decompress everything under the directory `/plugins`
   - The folder inside the `.zip` must not contain any branch names and must be exact case (matching the plugin name)
