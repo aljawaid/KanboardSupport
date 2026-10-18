@@ -1,5 +1,13 @@
 # Changelog
 
+## v4.5.2
+
+_(most recent changes are listed on top):_
+- FIX: Prevent Apache diagnostics from failing when PHP-FPM does not expose mod_php functions
+- FIX: Fall back to available server software evidence and report unavailable Apache modules accurately
+- FIX: Add focused PHP-FPM compatibility regression coverage
+
+
 ## v4.5.1
 
 _(most recent changes are listed on top):_

@@ -4,13 +4,15 @@
  * Verifies current Kanboard and PHP compatibility in the diagnostic templates.
  *
  * Related source files: Plugin.php, Template/config_sections/server-config.php,
- * Template/config_sections/php-info.php and Template/config_sections/app-sections.php.
+ * Template/config_sections/php-info.php, Template/config_sections/app-sections.php
+ * and Template/config_sections/apache-settings.php.
  */
 
 $plugin = $loadedPlugins[$pluginName];
 $serverSource = file_get_contents(__DIR__ . '/../Template/config_sections/server-config.php');
 $phpSource = file_get_contents(__DIR__ . '/../Template/config_sections/php-info.php');
 $appSectionsSource = file_get_contents(__DIR__ . '/../Template/config_sections/app-sections.php');
+$apacheSource = file_get_contents(__DIR__ . '/../Template/config_sections/apache-settings.php');
 
 kanboardSupportAssertSame(
     '>=1.2.54',
@@ -47,9 +49,20 @@ kanboardSupportAssertContains(
     $appSectionsSource,
     'Certificate verification must be shown as the healthy default.'
 );
+kanboardSupportAssertContains(
+    "function_exists('apache_get_version')",
+    $apacheSource,
+    'Apache diagnostics must tolerate PHP-FPM runtimes without mod_php functions.'
+);
+kanboardSupportAssertContains(
+    "getServerVariable('SERVER_SOFTWARE', t('Not available'))",
+    $apacheSource,
+    'Apache diagnostics must fall back to the available server software evidence.'
+);
 
 $serverOutput = $container['template']->render('kanboardSupport:config_sections/server-config');
 $phpOutput = $container['template']->render('kanboardSupport:config_sections/php-info');
+$apacheOutput = $container['template']->render('kanboardSupport:config_sections/apache-settings');
 
 kanboardSupportAssertContains(
     t('Server Configuration'),
@@ -60,4 +73,9 @@ kanboardSupportAssertContains(
     t('PHP Information'),
     $phpOutput,
     'PHP diagnostics must render for the tested runtime.'
+);
+kanboardSupportAssertContains(
+    t('Apache Web Server Information'),
+    $apacheOutput,
+    'Apache diagnostics must render under PHP-FPM without mod_php functions.'
 );
