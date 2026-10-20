@@ -3,7 +3,7 @@
 ## v4.5.2
 
 _(most recent changes are listed on top):_
-- FIX: Prevent Apache diagnostics from failing when PHP-FPM does not expose mod_php functions
+- FIX: Prevent Apache diagnostics from failing when PHP-FPM does not expose mod_php functions - Relates to #31
 - FIX: Fall back to available server software evidence and report unavailable Apache modules accurately
 - FIX: Add focused PHP-FPM compatibility regression coverage
 
@@ -22,6 +22,18 @@ _(most recent changes are listed on top):_
 - FIX: Detect secure read-only application and plugin directories correctly
 - FIX: Mark the disabled plugin installer as the recommended production setting
 - FIX: Require Mailmagik PHP extensions only when the Mailmagik plugin is installed
+- FIX: The CACHE_DRIVER constant defaults to 'memory' if undefined (Kanboard version >= 1.2.47). - PR #33 - thanks @mkotelba
+- FIX: CSS Syntax
+- FIX: Icon Alignment
+- FIX: HTACCESS Icon
+- FIX: Apache Icon in Accordion
+- NEW: Add MySQL Icon
+- FIX: Accordion Highlights
+- NEW: Make Accordions More Visible
+- NEW: Display `HTACCESS` File to Admin Users - Closes #30
+- NEW: Show Debug Log Modal if Disabled - #28
+- NEW: Show Apache Modules - #31
+- Add Apache Web Server Information Section - Closes #31
 
 
 ## v4.5
